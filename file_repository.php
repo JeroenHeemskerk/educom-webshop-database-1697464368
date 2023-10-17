@@ -32,9 +32,12 @@
             if ($row != False) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
+            } else {
+                throw new Exception('Een lege regel is door de database gegeven in de functie findUserByEmail in file_repository.php');
             }
-        }
-        finally {
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        } finally {
             disconnectFromDatabase($conn);
         }
     }
@@ -45,13 +48,21 @@
         
         $sql = "INSERT INTO users (name, email_address, password)
         VALUES ('" . $data['name'] . "', '" . $data['email'] . "', '" . $data['password'] . "')";
+
+        mysqli_query($conn, $sql);
+        
+        $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $data['email'] . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
         
         try {
-            mysqli_query($conn, $sql);
-        }
-        finally {
-            disconnectFromDatabase($conn);
-        }
-        
+            if ($data['email'] != $row["email_address"]) {
+                throw new Exception('registerNewAccount in file_repository.php heeft de nieuwe user niet toegevoegd');
+            }
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }        
+
+        disconnectFromDatabase($conn);        
     }
 ?>
