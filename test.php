@@ -24,6 +24,7 @@ if (mysqli_query($conn, $sql)) {
     echo 'Error: ' . $sql . '<br>' . mysqli_error($conn);
 }*/
 
+/*
 $sql = "SELECT user_id, name, email_address, password FROM users";
 $result = mysqli_query($conn, $sql);
 
@@ -35,10 +36,23 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else {
     echo "Geen resultaten";
+}*/
+
+$email = "bob@hotmail.com";
+
+try {
+        $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);            
+        if ($row != False) {
+                $data = array('name' => $row["name"], 'email' => $row["email_address"],
+                'password' => $row["password"]);
+                print_r($data);
+            }
 }
-
-
-mysqli_close($conn);
+finally {
+    mysqli_close($conn);
+}
 
 //user_id name email_address password
 

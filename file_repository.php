@@ -1,28 +1,57 @@
 <?php
     
-    function findUserByEmail($email) {
+    function connectToDatabase() {        
+        $servername = "localhost";
+        $username = "WebShopUser";
+        $password = "Testtest!";
+        $dbname = "nicks_webshop";
+        
+        //Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        //Check connection
+        if (!$conn) {
+            die('Connection failed: ' . mysqli_connect_error());
+        }
+            
+        return $conn;
+    }
     
-        $users = fopen("users.txt", "r") or die("Unable to open file!");
+    function disconnectFromDatabase($conn) {        
+        mysqli_close($conn);
+    }
+    
+    function findUserByEmail($email) {
+        
+        $conn = connectToDatabase();
+        
         try {
-            while(!feof($users)) {            
-                $account = explode("|", fgets($users));
-                if ($account[0] == $email) {
-                    $password = trim($account[2]);
-                    return array ('email' => $account[0], 'name' => $account[1], 'password' => $password);
-                }
+            $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
+            $result = mysqli_query($conn, $sql);            
+            
+            $row = mysqli_fetch_assoc($result);            
+            if ($row != False) {
+                return array ('name' => $row["name"], 'email' => $row["email_address"],
+                'password' => $row["password"]);
             }
         }
         finally {
-            fclose($users);
+            disconnectFromDatabase($conn);
         }
     }
     
     function registerNewAccount($data) {
         
-        //Zet de nieuw opgegeven user op de volgende line
-        $users = fopen("users.txt", "a") or die("Unable to open file!");
-        $txt = PHP_EOL . $data['email'] . '|' . $data['name'] . '|' . $data['password'];
-        fwrite($users, $txt);
-        fclose($users);
+        $conn = connectToDatabase();
+        
+        $sql = "INSERT INTO users (name, email_address, password)
+        VALUES ('" . $data['name'] . "', '" . $data['email'] . "', '" . $data['password'] . "')";
+        
+        try {
+            mysqli_query($conn, $sql);
+        }
+        finally {
+            disconnectFromDatabase($conn);
+        }
+        
     }
 ?>
