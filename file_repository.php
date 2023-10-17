@@ -32,12 +32,9 @@
             if ($row != False) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
-            } else {
-                throw new Exception('Een lege regel is door de database gegeven in de functie findUserByEmail in file_repository.php');
             }
-        } catch (Exception $e) {
-            echo 'Error: ' . $e->getMessage();
-        } finally {
+        }
+		finally {
             disconnectFromDatabase($conn);
         }
     }
