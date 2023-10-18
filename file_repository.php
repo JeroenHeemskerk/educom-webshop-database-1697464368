@@ -29,7 +29,7 @@
         $conn = connectToDatabase();
         
         try {
-			$row = findEmailInDatabase($email);
+			$row = findEmailInDatabase($email, $conn);
          
             if ($row != False) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
@@ -41,7 +41,7 @@
         }
     }
 	
-	function findEmailInDatabase($email) {
+	function findEmailInDatabase($email, $conn) {
 		//Functie construeert de query om de rij met het emailadres te vinden en geeft deze rij als array terug
 		$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
         $result = mysqli_query($conn, $sql);            
@@ -61,7 +61,7 @@
         mysqli_query($conn, $sql);
         
 		//Check of nieuwe gebruiker is toegevoegd aan de database
-		$row = findEmailInDatabase($data['email']);        
+		$row = findEmailInDatabase($data['email'], $conn);        
         try {
             if ($data['email'] != $row["email_address"]) {
                 throw new Exception('registerNewAccount in file_repository.php heeft de nieuwe user niet toegevoegd');
