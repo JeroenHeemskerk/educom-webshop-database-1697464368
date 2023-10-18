@@ -209,22 +209,24 @@
             //Vervolgens wordt gekeken of correcte input gegeven is
             $errName = checkName($name);
             $errMail = checkEmail($email);
+			$errPassword = checkPassword($password);
         
             //Nadat een correct emailadres is opgegeven wordt ook gekeken of er sprake is van een nieuw uniek emailadres
-            if ($errMail == "") {
-            
-                $errMail = checkNewEmail($email);        
+            if ($errMail == "") {            
+                $errMail = checkNewEmail($email); 
+			}				
         
                 //Vervolgens wordt bekeken of er wachtwoorden opgegeven zijn, waarna de wachtwoorden met elkaar vergeleken worden
+			if ($errPassword == ""){
                 $errPassword = checkRegisterPassword($password, $passwordTwo);
+			}
         
                 //Indien sprake is van correcte input wordt een nieuw account aangemaakt en de gebruiker geredirect naar de loginpagina
-                if ($errName == "" && $errMail == "" && $errPassword == "") {
-                    $valid = True;        
-                }
-            }
+            if ($errName == "" && $errMail == "" && $errPassword == "") {
+                $valid = True;        
+            }            
         }
     
-        return array('name' => $name, 'errName' => $errName,'email'=> $email, 'errMail' => $errMail, 'password' => $password,'passwordTwo' => $passwordTwo, 'errPassword' => $errPassword, 'valid' => $valid, 'page' => "");
+        return array('name' => $name, 'errName' => $errName, 'email' => $email, 'errMail' => $errMail, 'password' => $password, 'passwordTwo' => $passwordTwo, 'errPassword' => $errPassword, 'valid' => $valid, 'page' => "");
     }
 ?>
