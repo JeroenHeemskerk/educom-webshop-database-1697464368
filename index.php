@@ -14,25 +14,21 @@
     
         //Indien sprake is van een POST-request wordt onderzocht welk formulier is opgegeven
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            return getPostVar('home');
+            return getPostVar('page', 'home');
     
         //Indien sprake is van een GET-request wordt bepaald welke pagina weergegeven moet worden
         } else if ($_SERVER["REQUEST_METHOD"] == "GET"){        
-            return getUrlVar('home');
-            
-        } else {
-			//Als geen page geset is met $_GET wordt home weergegeven
-			return "home";
-		}
+            return getUrlVar('page', 'home');            
+        }
     }
     
-    function getPostVar($default=''){
-        return isset($_POST['page']) ? $_POST['page'] : $default;
+    function getPostVar($key, $default=''){
+        return isset($_POST[$key]) ? $_POST[$key] : $default;
     }
-    
-    function getUrlVar($default='') {
-        return isset($_GET['page']) ? $_GET['page'] : $default;
-    }
+	
+	function getUrlVar($key, $default='') { 
+		return isset($_GET[$key]) ? $_GET[$key] : $default; 
+	} 
 
     function processRequest($page) {
     

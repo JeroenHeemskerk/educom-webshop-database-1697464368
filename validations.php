@@ -71,12 +71,12 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             //de input vanuit het formulier wordt hier in variabelen gezet en vervolgens opgeschoond door middel van de testInput functie
-            $salutation = testInput($_POST["salutation"]);
-            $name = testInput($_POST["name"]);
-            $email = testInput($_POST["email"]);
-            $phonenumber = testInput($_POST["phonenumber"]);
-            $message = testInput($_POST["message"]);
-			$contactmode = testInput($_POST["contactmode"]);
+            $salutation = testInput(getPostVar("salutation"));
+            $name = testInput(getPostVar("name"));
+            $email = testInput(getPostVar("email"));
+            $phonenumber = testInput(getPostVar("phonenumber"));
+            $message = testInput(getPostVar("message"));
+			$contactmode = testInput(getPostVar("contactmode"));
 			
 			if (empty($salutation)) {
 				
@@ -169,10 +169,10 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
         
             //Eerst worden ongewenste karakters verwijderd
-            $name = testInput($_POST["name"]);
-            $email = testInput($_POST["email"]);
-            $password = testInput($_POST["password"]);
-            $passwordTwo = testInput($_POST["passwordTwo"]);
+            $name = testInput(getPostVar("name"));
+            $email = testInput(getPostVar("email"));
+            $password = testInput(getPostVar("password"));
+            $passwordTwo = testInput(getPostVar("passwordTwo"));
         
             //Vervolgens wordt gekeken of correcte input gegeven is
             $errName = checkName($name);
