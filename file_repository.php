@@ -8,10 +8,10 @@
         
         //Create connectie
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-        //Check connectie
+        //Check connectie en laat een error zien indien database niet te bereiken is
 		try {
 			if (!$conn) {
-				throw new Exception('connectie met database is niet tot stand gekomen'); //die('Connection failed: ' . mysqli_connect_error());
+				throw new Exception('connectie met database is niet tot stand gekomen');
 			}
 		} catch (Exception $e) {
 			echo 'Error: ' . $e->getMessage();
