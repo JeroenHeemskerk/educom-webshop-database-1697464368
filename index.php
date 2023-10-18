@@ -90,30 +90,13 @@
     
         echo '<head>';
         echo '<title>';
-    
-        switch ($data['page']) {
-            case "home":
-                echo 'Nick zijn website';
-                break;
-            case "about":
-                echo 'About';
-                break;
-            case "contact":
-                echo 'Contact';
-                break;
-            case "register":
-                echo 'Register';
-                break;
-            case "login":
-                echo 'Login';
-                break;
-            case "thanks":
-                echo 'Dankuwel';
-                break;
-            default:
-                echo 'Nick zijn website';
-                break;
-        }
+		
+		$header = getHeader($data);
+		if ($header == 'Home') {
+			echo 'Nick zijn website';
+		} else {
+			echo $header;
+		}		
         
         echo '</title>';
         echo '<link rel="stylesheet" href="./CSS/stylesheet.css">';
@@ -169,39 +152,36 @@
     function showMenuItem($page, $title) {
         echo '<li><a href="index.php?page=' . $page . '">' . $title . '</a></li>';
     }
+	
+	function showHeader($data) {
+		echo '<h1>' . getHeader($data) . '</h1><br>';
+	}
 
-    function showHeader($data) {
+    function getHeader($data) {
         
         //Maakt de header aan en include daarmee ook de respectievelijke php file
         switch ($data['page']) {
             case "home":
                 include 'home.php';
-                showHomeHeader();
-                break;
+                return getHomeHeader();
             case "about":
                 include 'about.php';
-                showAboutHeader();
-                break;
+                return getAboutHeader();
             case "contact":
                 include 'contact.php';
-                showContactHeader();
-                break;
+                return getContactHeader();
             case "register":
                 include 'register.php';
-                showRegisterHeader();
-                break;
+                return getRegisterHeader();
             case "login":
                 include 'login.php';
-                showLoginHeader();
-                break;
+                return getLoginHeader();
             case "thanks":
                 include 'thanks.php';
-                echo 'Dankuwel';
-                break;
+				return getThanksHeader();
             default:
                 include 'home.php';
-                showHomeHeader();
-                break;
+                return getHomeHeader();
         }
     }
 
