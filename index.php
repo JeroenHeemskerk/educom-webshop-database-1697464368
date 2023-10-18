@@ -155,34 +155,7 @@
     }
 	
 	function showHeader($data) {
-		//De <h1> header wordt bepaald aan de hand van de header van de desbetreffenede pagina
-		//echo '<h1>' . getHeader($data) . '</h1><br>'; werkte niet omdat het twee keer de file include
-		
-		echo '<h1>';
-		switch ($data['page']) {
-            case "home":                
-                echo getHomeHeader();
-				break;
-            case "about":                
-                echo getAboutHeader();
-				break;
-            case "contact":                
-                echo getContactHeader();
-				break;
-            case "register":                
-                echo getRegisterHeader();
-				break;
-            case "login":                
-                echo getLoginHeader();
-				break;
-            case "thanks":                
-				echo getThanksHeader();
-				break;
-            default:                
-                echo getHomeHeader();
-				break;
-        }
-		echo '</h1><br>';
+		echo '<h1>' . getHeader($data) . '</h1>';
 	}
 
     function getHeader($data) {
@@ -190,25 +163,25 @@
         //Returnt de header vanuit de desbetreffende pagina en include daarmee ook de respectievelijke php file
         switch ($data['page']) {
             case "home":
-                include 'home.php';
+                require_once 'home.php';
                 return getHomeHeader();
             case "about":
-                include 'about.php';
+                require_once 'about.php';
                 return getAboutHeader();
             case "contact":
-                include 'contact.php';
+                require_once 'contact.php';
                 return getContactHeader();
             case "register":
-                include 'register.php';
+                require_once 'register.php';
                 return getRegisterHeader();
             case "login":
-                include 'login.php';
+                require_once 'login.php';
                 return getLoginHeader();
             case "thanks":
-                include 'thanks.php';
+                require_once 'thanks.php';
 				return getThanksHeader();
             default:
-                include 'home.php';
+                require_once 'home.php';
                 return getHomeHeader();
         }
     }
