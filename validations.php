@@ -1,6 +1,6 @@
 <?php
     function checkEmail($email) {
-    
+		
         if (empty($email)) {			
             return "Emailadres moet ingevuld zijn";  
 			
@@ -13,21 +13,22 @@
     }
     
     function checkNewEmail($email) {
+		
         if (doesEmailExist($email)) {
             return "Dit emailadres is al in gebruik";
         }
         return "";
     }
     
-    function checkPassword($password) {
-        
+    function checkPassword($password) {   
+	
         if ($password == ""){
             return "Er is geen wachtwoord opgegeven";
         }
     }
     
     function checkRegisterPassword($password, $passwordTwo) {
-
+		
 		if (empty($passwordTwo)) {
 			return "Het wachtwoord moet ter controle nog een keer ingevuld worden";
 			
@@ -75,7 +76,8 @@
             $email = testInput($_POST["email"]);
             $phonenumber = testInput($_POST["phonenumber"]);
             $message = testInput($_POST["message"]);
-    
+			$contactmode = testInput($_POST["contactmode"]);
+			
 			if (empty($salutation)) {
 				
                 $errSalutation = "Aanhef moet ingevuld zijn";                
@@ -110,11 +112,9 @@
             }             
             
             //Als contactmode leeg is wordt een foutmelding opgenomen
-            if (empty($_POST["contactmode"])) {
+            if (empty($contactmode)) {
 				
 				$errContactmode = "U moet een contactwijze kiezen";                
-            } else {
-                $contactmode = testInput($_POST["contactmode"]);
             }
         
             //Als er geen errors voorkomen wordt validInput op true gezet zodat de bedankpagina getoond kan worden
