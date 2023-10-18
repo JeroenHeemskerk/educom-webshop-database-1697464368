@@ -156,7 +156,33 @@
 	
 	function showHeader($data) {
 		//De <h1> header wordt bepaald aan de hand van de header van de desbetreffenede pagina
-		echo '<h1>' . getHeader($data) . '</h1><br>';
+		//echo '<h1>' . getHeader($data) . '</h1><br>'; werkte niet omdat het twee keer de file include
+		
+		echo '<h1>';
+		switch ($data['page']) {
+            case "home":                
+                echo getHomeHeader();
+				break;
+            case "about":                
+                echo getAboutHeader();
+				break;
+            case "contact":                
+                echo getContactHeader();
+				break;
+            case "register":                
+                echo getRegisterHeader();
+				break;
+            case "login":                
+                echo getLoginHeader();
+				break;
+            case "thanks":                
+				echo getThanksHeader();
+				break;
+            default:                
+                echo getHomeHeader();
+				break;
+        }
+		echo '</h1><br>';
 	}
 
     function getHeader($data) {
