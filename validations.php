@@ -1,36 +1,15 @@
 <?php
     function checkEmail($email) {
     
-        if (!empty($_POST["email"])) {
-                
-            //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (empty($email)) {			
+            return "Emailadres moet ingevuld zijn";  
+			
+        //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return "Vul een valide emailadres in";
-            } else {
-                return "";
-            }
-        } else {
-            return "Emailadres moet ingevuld zijn";
-        }
-    }
-    
-    function checkEmailRegisterForm($email) {
-    
-        if (!empty($_POST["email"])) {
-                
-            //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                return "Vul een valide emailadres in";
-            }
-            if (checkNewEmail($email)) {
-                //Als email niet leeg en valide is, wordt gekeken of sprake is van een nieuw emailadres
-                return "";
-            } else {
-                return "Dit emailadres is al in gebruik";
-            }
-        } else {
-            return "Emailadres moet ingevuld zijn";
-        }
+        } 
+		
+		return "";
     }
     
     function checkNewEmail($email) {
@@ -42,39 +21,36 @@
     
     function checkPassword($password) {
         
-        if (empty($_POST["password"])){
+        if ($password == ""){
             return "Er is geen wachtwoord opgegeven";
         }
     }
     
     function checkRegisterPassword($password, $passwordTwo) {
-            
-        if (!empty($_POST["passwordTwo"])) {
-                
-            //Als password niet leeg is wordt gekeken of er sprake is van een tweede wachtwoord welke gelijk moet zijn aan de eerste
-            if ($password == $passwordTwo) {
-                return "";
-            } else {
-                return "De wachtwoorden moeten gelijk zijn aan elkaar";
-            }
-        } else {
-            return "Het wachtwoord moet ter controle nog een keer ingevuld worden";
-        }    
+
+		if (empty($passwordTwo)) {
+			return "Het wachtwoord moet ter controle nog een keer ingevuld worden";
+			
+		//Als password niet leeg is wordt gekeken of er sprake is van een tweede wachtwoord welke gelijk moet zijn aan de eerste
+		} else if ($password == $passwordTwo) {
+			return "";
+		} else {
+			return "De wachtwoorden moeten gelijk zijn aan elkaar";
+		}
+			
     }
     
     function checkName($name) {    
-    
-        if (!empty($_POST["name"])) {
-                
-            //Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-                return "Enkel letters en whitespaces zijn toegestaan";
-            } else {
-                return "";
-            }
-        } else {
-            return "Naam moet ingevuld zijn";            
-        }
+		
+		if (empty($name)) {
+			return "Naam moet ingevuld zijn";
+
+		//Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
+		} else if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+			return "Enkel letters en whitespaces zijn toegestaan";
+		} else {
+			return "";
+		}
     }
     
     function testInput($input) {
@@ -100,7 +76,7 @@
             $phonenumber = testInput($_POST["phonenumber"]);
             $message = testInput($_POST["message"]);
     
-        if (!empty($_POST["salutation"])) {
+			if (!empty($salutation)) {
                 
                 //Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
                 if (!($salutation == "mr." || $salutation == "mrs." || $salutation == "neither")) {
@@ -111,7 +87,7 @@
                 $errSalutation = "Aanhef moet ingevuld zijn";
             }
             
-            if (!empty($_POST["name"])) {
+            if (!empty($name)) {
                 
                 //Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
                 if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
@@ -121,7 +97,7 @@
                 $errName = "Naam moet ingevuld zijn";
             }
             
-            if (!empty($_POST["email"])) {
+            if (!empty($email)) {
                 
                 //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -131,7 +107,7 @@
                 $errMail = "Emailadres moet ingevuld zijn";
             }
             
-            if (!empty($_POST["phonenumber"])) {
+            if (!empty($phonenumber)) {
                 
                 //Als phonenumber niet leeg is wordt gekeken of phonenumber enkel uit nummers bestaat
                 if (!is_numeric($phonenumber)) {
@@ -144,7 +120,7 @@
             //Als contactmode leeg is wordt een foutmelding opgenomen
             if (!empty($_POST["contactmode"])) {
             
-                $contactmode = $_POST["contactmode"];
+                $contactmode = testInput($_POST["contactmode"]);
             } else {
                 $errContactmode = "U moet een contactwijze kiezen";
             }
