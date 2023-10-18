@@ -1,7 +1,7 @@
-<?php    
-    
-    function showContactHeader() {
-        echo '<h1>Contact</h1><br>';
+<?php
+
+	function getContactHeader() {
+        return "Contact";
     }
     
     function showContactBody($data) {    

@@ -1,7 +1,7 @@
 <?php
     
-    function showLoginHeader() {
-        echo '<h1>Login</h1><br>';
+	function getLoginHeader() {
+        return "Login";
     }
     
     function showLoginBody($data){

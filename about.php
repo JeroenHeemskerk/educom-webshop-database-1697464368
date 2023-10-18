@@ -1,7 +1,7 @@
 <?php
     
-    function showAboutHeader() {
-        echo '<h1>About</h1><br>';
+	function getAboutHeader() {
+        return "About";
     }
     
     function showAboutBody() {

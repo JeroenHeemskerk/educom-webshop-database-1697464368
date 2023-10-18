@@ -1,7 +1,7 @@
 <?php
     
-    function showRegisterHeader() {
-        echo '<h1>Register</h1><br>';
+	function getRegisterHeader() {
+        return "Register";
     }
     
     function showRegisterBody($data){

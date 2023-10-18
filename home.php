@@ -1,7 +1,7 @@
 <?php
     
-    function showHomeHeader() {
-        echo '<h1>Home</h1><br>';
+    function getHomeHeader() {
+        return "Home";
     }
         
     function showHomeBody() {

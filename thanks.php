@@ -1,7 +1,7 @@
 <?php
 
-    function showThanksHeader() {
-        echo '<h1>Thanks</h1><br>';
+	function getThanksHeader() {
+        return "Dankuwel";
     }
     
     function showThanksBody($data) {            

@@ -62,7 +62,7 @@
                 }
         }
         
-        //Aan dat wordt een array menu toegevoegd met de standaard weer te geven items
+        //Aan $data wordt een array menu toegevoegd met de standaard weer te geven items
         //Naar aanleiding van of de user ingelogd is wordt register en login of logout toegevoegd
         $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact');
         if (isUserLoggedIn()) {
@@ -91,6 +91,7 @@
         echo '<head>';
         echo '<title>';
 		
+		//getHeader haalt de header van de desbetreffende pagina en de header wordt vervolgens gebruikt om de title aan te maken
 		$header = getHeader($data);
 		if ($header == 'Home') {
 			echo 'Nick zijn website';
@@ -154,12 +155,13 @@
     }
 	
 	function showHeader($data) {
+		//De <h1> header wordt bepaald aan de hand van de header van de desbetreffenede pagina
 		echo '<h1>' . getHeader($data) . '</h1><br>';
 	}
 
     function getHeader($data) {
         
-        //Maakt de header aan en include daarmee ook de respectievelijke php file
+        //Returnt de header vanuit de desbetreffende pagina en include daarmee ook de respectievelijke php file
         switch ($data['page']) {
             case "home":
                 include 'home.php';
