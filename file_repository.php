@@ -9,9 +9,13 @@
         //Create connectie
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         //Check connectie
-        if (!$conn) {
-            die('Connection failed: ' . mysqli_connect_error());
-        }
+		try {
+			if (!$conn) {
+				throw new Exception('connectie met database is niet tot stand gekomen'); //die('Connection failed: ' . mysqli_connect_error());
+			}
+		} catch (Exception $e) {
+			echo 'Error: ' . $e->getMessage();
+		}		
             
         return $conn;
     }
