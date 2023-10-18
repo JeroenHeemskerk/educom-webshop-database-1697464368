@@ -6,9 +6,9 @@
         $password = "Testtest!";
         $dbname = "nicks_webshop";
         
-        //Create connection
+        //Create connectie
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-        //Check connection
+        //Check connectie
         if (!$conn) {
             die('Connection failed: ' . mysqli_connect_error());
         }
@@ -48,6 +48,7 @@
 
         mysqli_query($conn, $sql);
         
+		//Check of nieuwe gebruiker is toegevoegd aan de database
         $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $data['email'] . "'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
