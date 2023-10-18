@@ -76,53 +76,45 @@
             $phonenumber = testInput($_POST["phonenumber"]);
             $message = testInput($_POST["message"]);
     
-			if (!empty($salutation)) {
-                
-                //Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
-                if (!($salutation == "mr." || $salutation == "mrs." || $salutation == "neither")) {
-                
-                    $errSalutation = "Enkel 'Dhr.', 'Mvr.' of 'Geen van beide' zijn valide input";
-                }
-            } else {
-                $errSalutation = "Aanhef moet ingevuld zijn";
+			if (empty($salutation)) {
+				
+                $errSalutation = "Aanhef moet ingevuld zijn";                
+			//Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn                
+            } else if (!($salutation == "mr." || $salutation == "mrs." || $salutation == "neither")) {                
+                $errSalutation = "Enkel 'Dhr.', 'Mvr.' of 'Geen van beide' zijn valide input";
             }
             
-            if (!empty($name)) {
-                
-                //Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
-                if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+            if (empty($name)) {
+				
+                $errName = "Naam moet ingevuld zijn";				
+			//Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
+			} else if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
                     $errName = "Enkel letters en whitespaces zijn toegestaan";
-                }
-            } else {
-                $errName = "Naam moet ingevuld zijn";
-            }
+            }       
             
-            if (!empty($email)) {
-                
-                //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $errMail = "Vul een valide emailadres in";
-                }
-            } else {
+            if (empty($email)) {
+				
                 $errMail = "Emailadres moet ingevuld zijn";
-            }
+            //Als email niet leeg is wordt gekeken of er sprake is van een valide emailadres
+            } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errMail = "Vul een valide emailadres in";
+            }             
             
-            if (!empty($phonenumber)) {
+            if (empty($phonenumber)) {
                 
-                //Als phonenumber niet leeg is wordt gekeken of phonenumber enkel uit nummers bestaat
-                if (!is_numeric($phonenumber)) {
+				$errPhonenumber = "Telefoonnummer moet ingevuld zijn";
+				
+            //Als phonenumber niet leeg is wordt gekeken of phonenumber enkel uit nummers bestaat
+            } else if (!is_numeric($phonenumber)) {
                     $errPhonenumber = "Enkel cijfers zijn toegestaan";
-                }
-            } else {
-                $errPhonenumber = "Telefoonnummer moet ingevuld zijn";
-            }
+            }             
             
             //Als contactmode leeg is wordt een foutmelding opgenomen
-            if (!empty($_POST["contactmode"])) {
-            
-                $contactmode = testInput($_POST["contactmode"]);
+            if (empty($_POST["contactmode"])) {
+				
+				$errContactmode = "U moet een contactwijze kiezen";                
             } else {
-                $errContactmode = "U moet een contactwijze kiezen";
+                $contactmode = testInput($_POST["contactmode"]);
             }
         
             //Als er geen errors voorkomen wordt validInput op true gezet zodat de bedankpagina getoond kan worden
