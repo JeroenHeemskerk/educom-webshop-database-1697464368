@@ -29,10 +29,8 @@
         $conn = connectToDatabase();
         
         try {
-            $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
-            $result = mysqli_query($conn, $sql);            
-            
-            $row = mysqli_fetch_assoc($result);            
+			$row = findEmailInDatabase($email);
+         
             if ($row != False) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
@@ -42,6 +40,14 @@
             disconnectFromDatabase($conn);
         }
     }
+	
+	function findEmailInDatabase($email) {
+		//Functie construeert de query om de rij met het emailadres te vinden en geeft deze rij als array terug
+		$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
+        $result = mysqli_query($conn, $sql);            
+            
+        return mysqli_fetch_assoc($result);   
+	}
     
     function registerNewAccount($data) {
         
@@ -53,9 +59,7 @@
         mysqli_query($conn, $sql);
         
 		//Check of nieuwe gebruiker is toegevoegd aan de database
-        $sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $data['email'] . "'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
+		$row = findEmailInDatabase($data['email']);
         
         try {
             if ($data['email'] != $row["email_address"]) {
