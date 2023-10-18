@@ -38,10 +38,10 @@
     
         //Radio button met contactwijze
         echo '<label for="contactmode1">Contactwijze:</label><span> ' . $data['errContactmode'] . '</span><br>
-            <input type="radio" id="contactmode1" name="contactmode" value="email">
-            <label for="contactmode1">Email</label><br>
-            <input type="radio" id="contactmode2" name="contactmode" value="phone">
-            <label for="contactmode2">Telefoon</label><br><br>';
+            <input type="radio" id="contactmode" name="contactmode" value="email">
+            <label for="contactmode">Email</label><br>
+            <input type="radio" id="contactmode" name="contactmode" value="phone">
+            <label for="contactmode">Telefoon</label><br><br>';
     
         //Mogelijkheid tot verzenden bericht
         echo '<label for="message">Uw bericht:</label><br>
@@ -69,9 +69,11 @@
     */
         
     function showFormField($fieldName, $label, $inputType, $data) {        
-
-        echo '<label for="' . $fieldName . '">' . $label . '</label>
-        <input type="' . $inputType . '" id="' . $fieldName .  '" name="' . $fieldName . '" ';
+		
+		if ($inputType == "text"){
+			echo '<label for="' . $fieldName . '">' . $label . '</label>
+			<input type="' . $inputType . '" id="' . $fieldName .  '" name="' . $fieldName . '" ';
+		}
     }
                 
     function showFormStart() {
