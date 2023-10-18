@@ -45,7 +45,9 @@
 		//Functie construeert de query om de rij met het emailadres te vinden en geeft deze rij als array terug
 		$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
         $result = mysqli_query($conn, $sql);            
-            
+		
+		//Hier kan een check maar ik weet niet wat $result is als het echt fout gaat
+		
         return mysqli_fetch_assoc($result);   
 	}
     
@@ -59,8 +61,7 @@
         mysqli_query($conn, $sql);
         
 		//Check of nieuwe gebruiker is toegevoegd aan de database
-		$row = findEmailInDatabase($data['email']);
-        
+		$row = findEmailInDatabase($data['email']);        
         try {
             if ($data['email'] != $row["email_address"]) {
                 throw new Exception('registerNewAccount in file_repository.php heeft de nieuwe user niet toegevoegd');
