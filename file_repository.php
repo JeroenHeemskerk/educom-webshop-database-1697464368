@@ -9,13 +9,13 @@
         //Create connectie
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         //Check connectie en laat een error zien indien database niet te bereiken is
-		try {
-			if (!$conn) {
-				throw new Exception('Connectie met database is niet tot stand gekomen in de functie connectToDatabase in file_repository.php');
-			}
-		} finally {            
+		
+		if (!$conn) {
+			throw new Exception('Connectie met database is niet tot stand gekomen');
+		}
+		            
         return $conn;
-        }
+        
     }
     
     function disconnectFromDatabase($conn) {        
@@ -28,15 +28,14 @@
         
         try {
 			$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
-			$result = mysqli_query($conn, $sql);
-			$row = mysqli_fetch_assoc($result);
+			$result = mysqli_query($conn, $sql);            
             
-            //Zet onderstaande == op != om de foutmelding te triggeren
-            if ($row == False) {
-                throw new Exception('Gebruiker is niet opgehaald in de database in de functie findUserByEmail in file_repository.php');
+            if ($result == False) {
+                throw new Exception('Opgegeven emailadres kon niet worden opgezocht in de database');
             }
-         
-            if ($row != NULL) {
+            
+			$row = mysqli_fetch_assoc($result);                     
+            if ($row != Null) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
             }
@@ -50,10 +49,15 @@
         
         $conn = connectToDatabase();
         
-        $sql = "INSERT INTO users (name, email_address, password)
-        VALUES ('" . $data['name'] . "', '" . $data['email'] . "', '" . $data['password'] . "')";
+        try{
+            $sql = "INSERT INTO users (name, email_address, password)
+            VALUES ('" . $data['name'] . "', '" . $data['email'] . "', '" . $data['password'] . "')";
 
-        mysqli_query($conn, $sql);
-        disconnectFromDatabase($conn);        
+            if (!mysqli_query($conn, $sql)) {
+                throw new Exception('Gebruiker kon niet geregistreerd worden in de database');
+            }            
+        } finally {        
+        disconnectFromDatabase($conn);
+        }        
     }
 ?>
