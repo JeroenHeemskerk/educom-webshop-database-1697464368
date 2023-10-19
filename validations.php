@@ -195,7 +195,7 @@
                     $errMail = checkNewEmail($email);
                 } catch (Exception $e) {
                     $genericError = "Door een technisch probleem is registreren helaas niet mogelijk op dit moment. Probeer het op een later moment nogmaals.<br>";
-                    logError($e->getMessage()); //Schrijf $e naar log functie
+                    logError($e->getMessage()); //Schrijf $e naar log functie (deze doet niks op dit moment want is conform opdracht niet geïmplementeerd)
                 }
 			}				
         

@@ -166,7 +166,7 @@
     }
     
     function logError($msg) {
-        echo 'Logging to errorlog: ' . $msg;
+        //echo 'Logging to errorlog: ' . $msg;
     }
 	
 	function showHeader($data) {
