@@ -162,7 +162,8 @@
                 
                 }
                 catch (Exception $e) {
-                    $genericError = "Door een technisch probleem is inloggen helaas niet mogelijk op dit moment.<br>" . $e->getMessage();//$e moet eigenlijk weggeschreven worden naar een log
+                    $genericError = "Door een technisch probleem is inloggen helaas niet mogelijk op dit moment. Probeer het op een later moment nogmaals<br>";
+                    logError($e->getMessage()); //Schrijf $e naar log functie
                 }
             }
         }
@@ -194,7 +195,8 @@
                 try {
                     $errMail = checkNewEmail($email);
                 } catch (Exception $e) {
-                    $genericError = "Door een technisch probleem is registreren helaas niet mogelijk op dit moment.<br>" . $e->getMessage();//$e moet eigenlijk weggeschreven worden naar een log
+                    $genericError = "Door een technisch probleem is registreren helaas niet mogelijk op dit moment. Probeer het op een later moment nogmaals.<br>";
+                    logError($e->getMessage()); //Schrijf $e naar log functie
                 }
 			}				
         

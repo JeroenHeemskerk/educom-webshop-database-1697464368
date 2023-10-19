@@ -146,6 +146,10 @@
         }
         echo '</ul><br>';                
     }
+
+    function showMenuItem($page, $title) {
+        echo '<li><a href="index.php?page=' . $page . '">' . $title . '</a></li>';
+    }
     
     function showError($data) {
         
@@ -160,9 +164,9 @@
             break;
         }
     }
-
-    function showMenuItem($page, $title) {
-        echo '<li><a href="index.php?page=' . $page . '">' . $title . '</a></li>';
+    
+    function logError($msg) {
+        echo 'Logging to errorlog: ' . $msg;
     }
 	
 	function showHeader($data) {
