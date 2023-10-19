@@ -11,13 +11,11 @@
         //Check connectie en laat een error zien indien database niet te bereiken is
 		try {
 			if (!$conn) {
-				throw new Exception('connectie met database is niet tot stand gekomen');
+				throw new Exception('Connectie met database is niet tot stand gekomen in de functie connectToDatabase in file_repository.php');
 			}
-		} catch (Exception $e) {
-			echo 'Error: ' . $e->getMessage();
-		}		
-            
+		} finally {            
         return $conn;
+        }
     }
     
     function disconnectFromDatabase($conn) {        
@@ -32,8 +30,12 @@
 			$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
+            
+            if ($row == False) {
+                throw new Exception('Gebruiker is niet opgehaald in de database in de functie findUserByEmail in file_repository.php');
+            }
          
-            if ($row != False) {
+            if ($row != NULL) { //false of null
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
             }

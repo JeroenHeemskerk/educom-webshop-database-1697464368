@@ -36,6 +36,10 @@ span {
     color: red;
 }
 
+.error {
+    color: red;
+}
+
 /*Verwijdert de list-style voor het navigatiemenu*/
 .nav {
     list-style-type: none;

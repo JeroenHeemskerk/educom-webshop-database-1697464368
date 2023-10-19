@@ -104,7 +104,8 @@
     
         echo '<body class="pagetext">';    
         showHeader($data);    
-        showNavMenu($data);    
+        showNavMenu($data);
+        showError($data);        
         showContent($data);    
         echo '</body>';
     }
@@ -144,6 +145,10 @@
             showMenuItem($link, $label);
         }
         echo '</ul><br>';                
+    }
+    
+    function showError($data) {
+        echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
     }
 
     function showMenuItem($page, $title) {

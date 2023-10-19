@@ -14,6 +14,7 @@
     
     function checkNewEmail($email) {
 		
+        //doesEmailExist staat in user_service.php
         if (doesEmailExist($email)) {
             return "Dit emailadres is al in gebruik";
         }
@@ -133,7 +134,7 @@
     
     function validateLogin() {
     
-        $email = $password = $name = $errMail = $errPassword = "";
+        $email = $password = $name = $errMail = $errPassword = $genericError = "";
         $valid = False;
     
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -148,22 +149,30 @@
         
             //Indien geen foutmeldingen gegeven zijn bij het checken van het emailadres en password is sprake van valide input
             if ($errMail == "" && $errPassword == "") {
+                
+                try {
                 $user = authenticateUser($email, $password);
+                    
                 if (!empty($user)) {
                     $name = $user['name'];
                     $valid = True;
                 } else {
                     $errMail = "Opgegeven emailadres is niet gekoppeld aan een gebruiker of incorrect wachtwoord";
                 }
+                
+                }
+                catch (Exception $e) {
+                    $genericError = "Door een technisch probleem is inloggen helaas niet mogelijk op dit moment.<br>" . $e->getMessage();//$e moet eigenlijk weggeschreven worden naar een log
+                }
             }
         }
     
-        return array('email'=> $email, 'errMail' => $errMail, 'name' => $name, 'password' => $password, 'errPassword' => $errPassword, 'valid' => $valid, 'page' => "");
+        return array('email'=> $email, 'errMail' => $errMail, 'name' => $name, 'password' => $password, 'errPassword' => $errPassword, 'genericError' => $genericError, 'valid' => $valid, 'page' => "");
     }
     
     function validateRegister() {
     
-        $name = $email = $password = $passwordTwo = $errName = $errMail = $errPassword = "";
+        $name = $email = $password = $passwordTwo = $errName = $errMail = $errPassword = $genericError = "";
         $valid = False;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -180,8 +189,13 @@
 			$errPassword = checkPassword($password);
         
             //Nadat een correct emailadres is opgegeven wordt ook gekeken of er sprake is van een nieuw uniek emailadres
-            if ($errMail == "") {            
-                $errMail = checkNewEmail($email); 
+            if ($errMail == "") {
+                    
+                try {
+                    $errMail = checkNewEmail($email);
+                } catch (Exception $e) {
+                    $genericError = "Door een technisch probleem is registreren helaas niet mogelijk op dit moment.<br>" . $e->getMessage();//$e moet eigenlijk weggeschreven worden naar een log
+                }
 			}				
         
                 //Vervolgens wordt bekeken of er wachtwoorden opgegeven zijn, waarna de wachtwoorden met elkaar vergeleken worden
@@ -195,6 +209,6 @@
             }            
         }
     
-        return array('name' => $name, 'errName' => $errName, 'email' => $email, 'errMail' => $errMail, 'password' => $password, 'passwordTwo' => $passwordTwo, 'errPassword' => $errPassword, 'valid' => $valid, 'page' => "");
+        return array('name' => $name, 'errName' => $errName, 'email' => $email, 'errMail' => $errMail, 'password' => $password, 'passwordTwo' => $passwordTwo, 'errPassword' => $errPassword, 'genericError' => $genericError, 'valid' => $valid, 'page' => "");
     }
 ?>
