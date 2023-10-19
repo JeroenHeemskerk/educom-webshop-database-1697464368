@@ -31,7 +31,7 @@
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
             
-            if ($row == False) {
+            if ($row != False) {
                 throw new Exception('Gebruiker is niet opgehaald in de database in de functie findUserByEmail in file_repository.php');
             }
          

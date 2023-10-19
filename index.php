@@ -148,7 +148,17 @@
     }
     
     function showError($data) {
-        echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+        
+        switch ($data['page']) {
+            case "register":
+                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                break;
+            case "login":
+                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                break;
+            default:
+            break;
+        }
     }
 
     function showMenuItem($page, $title) {
