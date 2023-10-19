@@ -151,15 +151,14 @@
             if ($errMail == "" && $errPassword == "") {
                 
                 try {
-                $user = authenticateUser($email, $password);
+                    $user = authenticateUser($email, $password);
                     
-                if (!empty($user)) {
-                    $name = $user['name'];
+                    if (!empty($user)) {
+                        $name = $user['name'];
                     $valid = True;
-                } else {
-                    $errMail = "Opgegeven emailadres is niet gekoppeld aan een gebruiker of incorrect wachtwoord";
-                }
-                
+                    } else {
+                        $errMail = "Opgegeven emailadres is niet gekoppeld aan een gebruiker of incorrect wachtwoord";
+                    }                
                 }
                 catch (Exception $e) {
                     $genericError = "Door een technisch probleem is inloggen helaas niet mogelijk op dit moment. Probeer het op een later moment nogmaals<br>";
