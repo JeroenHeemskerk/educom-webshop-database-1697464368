@@ -36,7 +36,7 @@
                 throw new Exception('Gebruiker is niet opgehaald in de database in de functie findUserByEmail in file_repository.php');
             }
          
-            if ($row != NULL) { //false of null
+            if ($row != NULL) {
                 return array ('name' => $row["name"], 'email' => $row["email_address"],
                 'password' => $row["password"]);
             }
