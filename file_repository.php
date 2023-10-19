@@ -26,6 +26,8 @@
         
         $conn = connectToDatabase();
         
+        $email = mysqli_real_escape_string($conn, $email);
+        
         try {
 			$sql = "SELECT name, email_address, password FROM users WHERE email_address='" . $email . "'";
 			$result = mysqli_query($conn, $sql);            
@@ -49,9 +51,13 @@
         
         $conn = connectToDatabase();
         
+        $name = mysqli_real_escape_string($conn, $data['name']);
+        $email = mysqli_real_escape_string($conn, $data['email']);
+        $password = mysqli_real_escape_string($conn, $data['password']);
+        
         try{
             $sql = "INSERT INTO users (name, email_address, password)
-            VALUES ('" . $data['name'] . "', '" . $data['email'] . "', '" . $data['password'] . "')";
+            VALUES ('" . $name . "', '" . $email . "', '" . $password . "')";
 
             if (!mysqli_query($conn, $sql)) {
                 throw new Exception('Gebruiker kon niet geregistreerd worden in de database');
