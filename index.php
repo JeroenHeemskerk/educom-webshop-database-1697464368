@@ -3,6 +3,7 @@
     include 'file_repository.php';
     include 'validations.php';
     include 'session_manager.php';
+    include 'products_service.php';
 
     session_start();
 
@@ -56,6 +57,10 @@
                     registerNewAccount($data);
                     $page = "login";
                 }
+                break;
+            case "webshop":
+                $data['items'] = getAllItems();
+                break;
         }
         
         //Aan $data wordt een array menu toegevoegd met de standaard weer te geven items
@@ -165,6 +170,12 @@
                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 case "login":
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                case "webshop":
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                case "product":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 default:

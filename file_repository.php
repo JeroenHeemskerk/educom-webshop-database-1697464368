@@ -73,26 +73,32 @@
 
         $item = mysqli_real_escape_string($conn, $item);
 
-        //tr{
+        try{
             $sql = "SELECT * FROM products WHERE name='" . $item . "'";
             $result = mysqli_query($conn, $sql);
 
-            /*if ($result == False) {
-                throw new Exception('Opgegeven emailadres kon niet worden opgezocht in de database');
-            }*/
+            if ($result == False) {
+                throw new Exception('Opgegeven product kon niet worden opgezocht in de database');
+            }
             
             $row = mysqli_fetch_assoc($result);
             return $row;
-        //}
+        }finally {
+            disconnectFromDatabase($conn);  
+        }
     }
 
-    function getWebshopItems() {
+    function getAllItems() {
 
         $conn = connectToDatabase();
 
-        //try {
+        try {
             $sql = "SELECT * FROM products";
             $result = mysqli_query($conn, $sql);
+
+            if ($result == False) {
+                throw new Exception('Producten konden niet uitgelezen worden uit de database');
+            }
 
             //Output gevonden rijen
             if (mysqli_num_rows($result) > 0) {
@@ -107,6 +113,8 @@
 
                 return $items;
             }
-        //}
+        } finally {
+            disconnectFromDatabase($conn);  
+        }
     }
 ?>
