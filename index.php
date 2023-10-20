@@ -115,6 +115,7 @@
     
         switch ($data['page']) {
             case "home":
+            case "logout":
                 showHomeBody();
                 break;
             case "about":
@@ -136,7 +137,7 @@
                 showWebshopBody($data);
                 break;
             default:
-                showHomeBody();
+                showProductBody();
                 break;
         }
     }
@@ -185,6 +186,7 @@
         //Returnt de header vanuit de desbetreffende pagina en include daarmee ook de respectievelijke php file
         switch ($data['page']) {
             case "home":
+            case "logout":
                 require_once 'home.php';
                 return getHomeHeader();
             case "about":
@@ -206,8 +208,8 @@
                 require_once 'webshop.php';
                 return getWebshopHeader();
             default:
-                require_once 'home.php';
-                return getHomeHeader();
+                require_once 'product.php';
+                return getProductHeader();
         }
     }
 

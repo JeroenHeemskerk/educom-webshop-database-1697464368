@@ -17,7 +17,7 @@
 
         //Geeft per product het product_id, name, description, price en product_picture_location weer 
         for ($i = 0; $i < $amountOfItems; $i++){
-            echo '<a class="productlink" href="index.php?page="' . $items[$i]["name"] . '"><div>' .
+            echo '<a class="productlink" href="index.php?page=' . strtolower($items[$i]["name"]) . '"><div>' .
             'Product id: ' . $items[$i]["product_id"] . '<br>' .
             'Artikel: ' . $items[$i]["name"] . '<br>' .
             'Beschrijving: ' . $items[$i]["description"] . '<br>' .

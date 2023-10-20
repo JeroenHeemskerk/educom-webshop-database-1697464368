@@ -77,3 +77,8 @@ span {
     color:black;
     text-decoration:none;
 }
+
+.productpage {
+    width: 300px;
+    height: 300px;
+}
