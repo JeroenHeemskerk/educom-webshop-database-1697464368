@@ -70,9 +70,8 @@
         
         //Aan $data wordt een array menu toegevoegd met de standaard weer te geven items
         //Naar aanleiding van of de user ingelogd is wordt register en login of logout toegevoegd
-        $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact');
+        $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact', 'webshop' => 'Webshop');
         if (isUserLoggedIn()) {
-            $data['menu']['webshop'] = "Webshop";
             $data['menu']['logout'] = "Logout " . getLoggedInUserName();
         } else {
             $data['menu']['register'] = "Register";
