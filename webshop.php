@@ -23,10 +23,14 @@
             'Prijs: €' . $data['items'][$i]['price'] . '<br>' .
             '<img src="' . $data['items'][$i]['product_picture_location'] . '" alt="Een foto">' .
             '</div></a>';
-            showFormStart();
             
-            showFormEnd();
-            echo '<br>';         
+            if (isUserLoggedIn()) {
+                showFormStart();
+                echo '<input type="hidden" name="page" value="webshop">';
+                echo '<input type="submit" value="+">';
+                echo '</form>';     
+            }
         }
+            
     }
 ?>
