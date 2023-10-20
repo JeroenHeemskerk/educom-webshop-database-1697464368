@@ -4,6 +4,8 @@ $username = "WebShopUser";
 $password = "Testtest!";
 $dbname = "nicks_webshop";
 
+//vs test
+
 //Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 //Check connectionif ($conn
