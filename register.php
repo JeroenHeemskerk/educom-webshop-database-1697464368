@@ -7,9 +7,8 @@
     function showRegisterBody($data){
         
         //Formulier met naam, emailadres en emailadrescheck
-        echo '<br>
-            <form method="post" action="index.php">
-            <label for="name">Naam:</label>
+        showFormStart();
+        echo '<label for="name">Naam:</label>
             <input type="text" id="name" name="name" placeholder="John Doe" value="' . $data['name'] . '"><span>' . $data['errName'] . '</span><br>
             <label for="email">Emailadres:</label>
             <input type="text" id="email" name="email" placeholder="j.doe@example.com" value="' . $data['email'] . '"><span>' . $data['errMail'] . '</span><br>
@@ -22,7 +21,6 @@
         echo '<input type="hidden" name="page" value="register">';
         
         //Verzendknop
-        echo '<input type="submit" value="Verzenden">
-        </form>';
+        showFormEnd();
     }
 ?>

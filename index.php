@@ -4,6 +4,7 @@
     include 'validations.php';
     include 'session_manager.php';
     include 'products_service.php';
+    include 'forms.php';
 
     session_start();
 

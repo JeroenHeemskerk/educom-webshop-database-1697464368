@@ -22,7 +22,11 @@
             'Beschrijving: ' . $data['items'][$i]['description'] . '<br>' .
             'Prijs: €' . $data['items'][$i]['price'] . '<br>' .
             '<img src="' . $data['items'][$i]['product_picture_location'] . '" alt="Een foto">' .
-            '</div></a><br>';         
+            '</div></a>';
+            showFormStart();
+            
+            showFormEnd();
+            echo '<br>';         
         }
     }
 ?>
