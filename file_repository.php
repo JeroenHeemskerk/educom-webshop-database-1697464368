@@ -66,4 +66,28 @@
         disconnectFromDatabase($conn);
         }        
     }
+
+    function getWebshopItems() {
+
+        $conn = connectToDatabase();
+
+        //try {
+            $sql = "SELECT * FROM products";
+            $result = mysqli_query($conn, $sql);
+
+            //Output gevonden rijen
+            if (mysqli_num_rows($result) > 0) {
+
+                $counter = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    
+                    //Counter zorgt ervoor dat een nieuwe rij op de volgende plek in de tweedimensionale array terecht komt
+                    $items[$counter] = $row;
+                    $counter++;
+                }
+
+                return $items;
+            }
+        //}
+    }
 ?>
