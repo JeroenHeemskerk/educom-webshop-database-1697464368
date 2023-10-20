@@ -7,6 +7,8 @@
     function showWebshopBody($data) {
      
     echo '<h2>Ons assortiment</h2>';
+    print_r($_SESSION);
+    echo '<br><br>';
     showWebshopItems($data);
     }
 
@@ -26,9 +28,10 @@
             
             if (isUserLoggedIn()) {
                 showFormStart();
-                echo '<input type="hidden" name="page" value="webshop">';
-                echo '<input type="submit" value="+">';
-                echo '</form>';     
+                echo '<input type="hidden" name="page" value="webshop">
+                <input type="hidden" name="item" value="' . $data['items'][$i]['product_id'] . '">
+                <input type="submit" value="+">
+                </form>';     
             }
         }
             

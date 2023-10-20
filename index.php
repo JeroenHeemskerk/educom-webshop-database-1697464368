@@ -61,12 +61,16 @@
                 break;
             case "webshop":
                 $data['items'] = getAllItems();
+                createShoppingCart();
+                addItemToShoppingCart();
                 break;
         }
 
         //Op basis van of enkel getallen zijn ingevoerd in de GET-request wordt het product getoond
         if (is_numeric($page)) {
             $data = getWebshopItemDetails($page);
+            createShoppingCart();
+            addItemToShoppingCart();
         }
         
         //Aan $data wordt een array menu toegevoegd met de standaard weer te geven items
