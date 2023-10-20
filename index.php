@@ -62,6 +62,7 @@
         //Naar aanleiding van of de user ingelogd is wordt register en login of logout toegevoegd
         $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact');
         if (isUserLoggedIn()) {
+            $data['menu']['webshop'] = "Webshop";
             $data['menu']['logout'] = "Logout " . getLoggedInUserName();
         } else {
             $data['menu']['register'] = "Register";
@@ -131,6 +132,9 @@
             case "thanks":
                 showThanksBody($data);
                 break;
+            case "webshop":
+                showWebshopBody($data);
+                break;
             default:
                 showHomeBody();
                 break;
@@ -153,15 +157,18 @@
     
     function showError($data) {
         
-        switch ($data['page']) {
-            case "register":
-                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+        if (isset($data['genericError']) && $data['genericError'] != ""){
+        
+            switch ($data['page']) {
+                case "register":
+                   echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                case "login":
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                default:
                 break;
-            case "login":
-                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
-                break;
-            default:
-            break;
+            }
         }
     }
     
@@ -195,6 +202,9 @@
             case "thanks":
                 require_once 'thanks.php';
 				return getThanksHeader();
+            case "webshop":
+                require_once 'webshop.php';
+                return getWebshopHeader();
             default:
                 require_once 'home.php';
                 return getHomeHeader();
