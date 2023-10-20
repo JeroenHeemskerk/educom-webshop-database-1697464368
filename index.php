@@ -62,6 +62,11 @@
                 $data['items'] = getAllItems();
                 break;
         }
+
+        //Op basis van of enkel getallen zijn ingevoerd in de GET-request wordt het product getoond
+        if (is_numeric($page)) {
+            $data = getWebshopItemDetails($page);
+        }
         
         //Aan $data wordt een array menu toegevoegd met de standaard weer te geven items
         //Naar aanleiding van of de user ingelogd is wordt register en login of logout toegevoegd
@@ -142,7 +147,7 @@
                 showWebshopBody($data);
                 break;
             default:
-                showProductBody();
+                showProductBody($data);
                 break;
         }
     }
@@ -175,11 +180,12 @@
                 case "webshop":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
-                case "product":
-                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
-                    break;
                 default:
                 break;
+            }
+
+            if (is_numeric($page)) {
+                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
             }
         }
     }

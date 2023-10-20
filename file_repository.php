@@ -74,11 +74,11 @@
         $item = mysqli_real_escape_string($conn, $item);
 
         try{
-            $sql = "SELECT * FROM products WHERE name='" . $item . "'";
+            $sql = "SELECT * FROM products WHERE product_id='" . $item . "'";
             $result = mysqli_query($conn, $sql);
 
             if ($result == False) {
-                throw new Exception('Opgegeven product kon niet worden opgezocht in de database');
+                throw new Exception('Opgegeven product kon niet worden gevonden in de database');
             }
             
             $row = mysqli_fetch_assoc($result);
