@@ -16,4 +16,14 @@
         echo '<input type="submit" value="Verzenden">';
         echo '</form>';
     }
+
+    function showIncrementButton($item, $page) {
+        if (isUserLoggedIn()) {
+            showFormStart();
+            echo '<input type="hidden" name="page" value="' . $page . '">
+            <input type="hidden" name="item" value="' . $item . '">
+            <input type="submit" value="+">
+            </form>';     
+        }
+    }
 ?>

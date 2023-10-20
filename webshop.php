@@ -6,10 +6,10 @@
     
     function showWebshopBody($data) {
      
-    echo '<h2>Ons assortiment</h2>';
-    print_r($_SESSION);
-    echo '<br><br>';
-    showWebshopItems($data);
+        echo '<h2>Ons assortiment</h2>';
+        print_r($_SESSION);
+        echo '<br><br>';
+        showWebshopItems($data);
     }
 
     function showWebshopItems($data) {
@@ -26,13 +26,7 @@
             '<img src="' . $data['items'][$i]['product_picture_location'] . '" alt="Een foto">' .
             '</div></a>';
             
-            if (isUserLoggedIn()) {
-                showFormStart();
-                echo '<input type="hidden" name="page" value="webshop">
-                <input type="hidden" name="item" value="' . $data['items'][$i]['product_id'] . '">
-                <input type="submit" value="+">
-                </form>';     
-            }
+            showIncrementButton($data['items'][$i]['product_id'], 'webshop');
         }
             
     }
