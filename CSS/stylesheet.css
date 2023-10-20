@@ -3,6 +3,7 @@ h1 {
     font-size: 80px;
     text-align: center;
 }
+
 body {
     max-width: 800px;
     margin: auto;
@@ -30,6 +31,11 @@ input, textarea {
 /*uitzonderingen op de breedte van inputvelden*/
 input[type=submit], input[type=radio] {
     width: auto;
+}
+
+img {
+    width: 100px;
+    height: 100px;
 }
 
 span {
@@ -64,4 +70,10 @@ span {
     background-color: white;
     color: rgb(80,80,80);
     font-size: 12px;
+}
+
+/*Zorgt voor normale tekstopmaak in het assortiment in plaats van ge-underlinede en paarse tekst*/
+.productlink {
+    color:black;
+    text-decoration:none;
 }
