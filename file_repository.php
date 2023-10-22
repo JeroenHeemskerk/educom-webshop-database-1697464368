@@ -67,7 +67,7 @@
         }        
     }
 
-    function getWebshopItem($item){
+    function getWebshopProduct($item){
 
         $conn = connectToDatabase();
 
@@ -88,7 +88,7 @@
         }
     }
 
-    function getAllItems() {
+    function getAllProducts() {
 
         $conn = connectToDatabase();
 
@@ -107,11 +107,11 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     
                     //Counter zorgt ervoor dat een nieuwe rij op de volgende plek in de tweedimensionale array terecht komt
-                    $items[$counter] = $row;
+                    $products[$counter] = $row;
                     $counter++;
                 }
 
-                return $items;
+                return $products;
             }
         } finally {
             disconnectFromDatabase($conn);  

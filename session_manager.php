@@ -22,7 +22,7 @@
         }
     }
 
-    function addItemToShoppingCart() {
+    function addProductToShoppingCart() {
 
         $item = getPostVar('item');
 

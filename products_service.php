@@ -1,22 +1,22 @@
 <?php
 
-    function getWebshopItemDetails($page) {
+    function getWebshopProductDetails($page) {
 
         try {
-            $item = getWebshopItem($page);
+            $product = getWebshopProduct($page);
         }
         catch(Exception $e){
             $genericErr = "Helaas kunnen wij dit product op dit moment niet laten zien. Probeer het later opnieuw.";
             logError($e->getMessage()); //Schrijf $e naar log functie
         }
 
-        return array("item" => $item);
+        return array("product" => $product);
     }
 
-    function getWebshopItems() {
+    function getWebshopProducts() {
     
     try {
-        $items = getAllItems();
+        $products = getAllProducts();
     }
     catch(Exception $e){
         $genericErr = "Helaas kunnen wij de producten op dit moment niet laten zien. Probeer het later opnieuw.";
@@ -24,6 +24,6 @@
     }
     
 
-    return array("items" => $items);
+    return array("products" => $products);
     }
 ?>

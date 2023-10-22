@@ -9,24 +9,24 @@
         echo '<h2>Ons assortiment</h2>';
         print_r($_SESSION);
         echo '<br><br>';
-        showWebshopItems($data);
+        showWebshopProducts($data);
     }
 
-    function showWebshopItems($data) {
+    function showWebshopProducts($data) {
         
-        $amountOfItems = count($data['items'][0]);
+        $amountOfProducts = count($data['products'][0]);
 
         //Geeft per product het product_id, name, description, price en product_picture_location weer 
-        for ($i = 0; $i < $amountOfItems; $i++){
-            echo '<a class="productlink" href="index.php?page=' . $data['items'][$i]['product_id'] . '"><div>' .
-            'Product id: ' . $data['items'][$i]['product_id'] . '<br>' .
-            'Artikel: ' . $data['items'][$i]['name'] . '<br>' .
-            'Beschrijving: ' . $data['items'][$i]['description'] . '<br>' .
-            'Prijs: €' . $data['items'][$i]['price'] . '<br>' .
-            '<img src="' . $data['items'][$i]['product_picture_location'] . '" alt="Een foto">' .
+        for ($i = 0; $i < $amountOfProducts; $i++){
+            echo '<a class="productlink" href="index.php?page=' . $data['products'][$i]['product_id'] . '"><div>' .
+            'Product id: ' . $data['products'][$i]['product_id'] . '<br>' .
+            'Artikel: ' . $data['products'][$i]['name'] . '<br>' .
+            'Beschrijving: ' . $data['products'][$i]['description'] . '<br>' .
+            'Prijs: €' . $data['products'][$i]['price'] . '<br>' .
+            '<img src="' . $data['products'][$i]['product_picture_location'] . '" alt="Een foto">' .
             '</div></a>';
             
-            showIncrementButton($data['items'][$i]['product_id'], 'webshop');
+            showIncrementButton($data['products'][$i]['product_id'], 'webshop');
         }
             
     }
