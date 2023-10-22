@@ -60,7 +60,8 @@
                 }
                 break;
             case "webshop":
-                $data['products'] = getAllProducts();
+                //$data['products'] = getAllProducts();
+                $data = getWebshopProducts();
                 createShoppingCart();
                 addProductToShoppingCart();
                 break;
