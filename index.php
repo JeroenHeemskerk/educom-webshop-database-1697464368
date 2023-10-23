@@ -214,12 +214,11 @@
                 case "webshop":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
+                case "details"
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
                 default:
                 break;
-            }
-
-            if (is_numeric($page)) {
-                echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
             }
         }
     }
