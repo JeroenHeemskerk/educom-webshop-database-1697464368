@@ -32,4 +32,13 @@
             
         $_SESSION['cart'][$product_id] += $quantity;
     }
+
+    function getShoppingCart() {
+        if (isset($_SESSION['cart'])) {
+            return $_SESSION['cart'];
+        } else {
+            createShoppingCart();
+            return $_SESSION['cart'];
+        }
+    }
 ?>

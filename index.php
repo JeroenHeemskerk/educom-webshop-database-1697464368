@@ -5,6 +5,7 @@
     include 'session_manager.php';
     include 'products_service.php';
     include 'forms.php';
+    include 'tables.php';
 
     session_start();
 
@@ -79,6 +80,18 @@
                 createShoppingCart();
                 $data += handleActions($data);
                 break;
+            case "cart":
+                $data['cart'] = getShoppingCart();
+                //print_r($data['cart']);
+                //echo '<br><br>';
+
+                $i = 0;
+                foreach ($data['cart'] as $product_id => $amount) {
+                    $data['products'][$product_id] = getWebshopProductDetails($product_id);
+                    $i++;
+                }
+
+                //print_r($data);
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items
@@ -107,10 +120,15 @@
                     if ($data['valid']){
                         addProductToShoppingCart($data['product_id'], $data['quantity']);
                     }
-                return $data;
+                return $data;  
             default:
                 //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
-                $data += array('errProduct_id' => "", 'errQuantity' => "");
+                //ook wordt rekening gehouden met of de $data array al bestaat of niet
+                if (isset($data)){
+                    $data += array('errProduct_id' => "", 'errQuantity' => "");
+                } else {
+                    $data = array('errProduct_id' => "", 'errQuantity' => "");
+                }
                 return $data;
         }
     }

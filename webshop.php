@@ -11,8 +11,7 @@
         echo '<br><br>';
         print_r($data);
         echo '<br><br>';
-        //var_dump($data['products'][0]);
-        //echo '<br><br>';
+
         showWebshopProducts($data);
     }
 

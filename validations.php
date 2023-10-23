@@ -255,7 +255,6 @@
                 try {
                     if (doesProductExist($product_id)) {
                         $valid = True;
-                        //addProductToShoppingCart($product_id, $quantity);
                     }
                 } catch(Exception $e) {
                     $genericErr = "Er is iets fout gegaan. Een niet bestaand product is opgevraagd. Probeer het later opnieuw.";
