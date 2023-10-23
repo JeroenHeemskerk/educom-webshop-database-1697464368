@@ -24,14 +24,15 @@
 
     function addProductToShoppingCart() {
 
-        $item = getPostVar('item');
+        $product = getPostVar('product');
 
-        if ($item != ""){ 
+        //Indien product met de POST-request meegegeven is wordt deze toegevoegd aan cart
+        if ($product != ""){ 
 
-            if (!isset($_SESSION['cart'][$item])){
-                $_SESSION['cart'][$item] = 1;
+            if (!isset($_SESSION['cart'][$product])){
+                $_SESSION['cart'][$product] = 1;
             } else {
-                $_SESSION['cart'][$item] += 1;
+                $_SESSION['cart'][$product] += 1;
             }
         }
     }

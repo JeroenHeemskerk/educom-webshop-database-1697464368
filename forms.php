@@ -17,11 +17,11 @@
         echo '</form>';
     }
 
-    function showIncrementButton($item, $page) {
+    function showIncrementButton($product, $page) {
         if (isUserLoggedIn()) {
             showFormStart();
             echo '<input type="hidden" name="page" value="' . $page . '">
-            <input type="hidden" name="item" value="' . $item . '">
+            <input type="hidden" name="product" value="' . $product . '">
             <input type="submit" value="+">
             </form>';     
         }
