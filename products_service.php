@@ -1,7 +1,7 @@
 <?php
 
     function getWebshopProductDetails($page) {
-
+        
         try {
             $product = getWebshopProduct($page);
         }
@@ -15,16 +15,16 @@
 
     function getWebshopProducts() {
     
-    try {
-        $products = getAllProducts();
-    }
-    catch(Exception $e) {
-        $genericError = "Helaas kunnen wij de producten op dit moment niet laten zien. Probeer het later opnieuw.";
-        logError($e->getMessage()); //Schrijf $e naar log functie
-    }
-    
+        $genericError = "";
+        try {
+            $products = getAllProducts();
+        }
+        catch(Exception $e) {
+            $genericError = "Helaas kunnen wij de producten op dit moment niet laten zien. Probeer het later opnieuw.";
+            logError($e->getMessage()); //Schrijf $e naar log functie
+        }    
 
-    return array('products' => $products, 'genericError' => $genericError);
+        return array('products' => $products, 'genericError' => $genericError);
     }
 
     function doesProductExist($product_id) {
