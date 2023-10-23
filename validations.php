@@ -43,7 +43,7 @@
 
     function checkProduct_id($product_id){
 
-        if ($product_id <= 0 || $product_id >= 1000000000 || !is_numeric($product_id)) {
+        if ($product_id <= 0 || $product_id >= 9999999999 || !is_numeric($product_id)) {
             return "Het toe te voegen product bestaat niet";
         }
     }
