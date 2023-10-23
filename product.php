@@ -22,6 +22,6 @@
         echo '<span>' . $data['errProduct_id'] . '</span><br>' .
         '<span>' . $data['errQuantity'] . '</span><br>';
     
-        showShopBuyAction($data['product']['product_id'], $data['product']['product_id']);
+        showShopBuyAction($data['product']['product_id'], $data['product']['product_id'], 'Buy');
     }
 ?>

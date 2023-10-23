@@ -234,6 +234,7 @@
     function validateAddingProductToShoppingCart() {
 
         $product_id = $quantity = $errProduct_id = $errQuantity = $genericError =  "";
+        $valid = False;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -253,7 +254,8 @@
 
                 try {
                     if (doesProductExist($product_id)) {
-                        addProductToShoppingCart($product_id, $quantity);
+                        $valid = True;
+                        //addProductToShoppingCart($product_id, $quantity);
                     }
                 } catch(Exception $e) {
                     $genericErr = "Er is iets fout gegaan. Een niet bestaand product is opgevraagd. Probeer het later opnieuw.";
@@ -262,6 +264,6 @@
             }
         }
 
-        return array('errProduct_id' => $errProduct_id, 'errQuantity' => $errQuantity, 'genericError' => $genericError);
+        return array('product_id' => $product_id, 'quantity' => $quantity, 'errProduct_id' => $errProduct_id, 'errQuantity' => $errQuantity, 'genericError' => $genericError, 'valid' => $valid);
     }
 ?>

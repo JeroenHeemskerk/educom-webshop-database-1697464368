@@ -62,7 +62,7 @@
             case "webshop":
                 $data = getWebshopProducts();
                 createShoppingCart();
-                $data += validateAddingProductToShoppingCart();                
+                $data += handleActions($data);           
                 break;
         }
 
@@ -70,7 +70,7 @@
         if (is_numeric($page)) {
             $data = getWebshopProductDetails($page);
             createShoppingCart();
-            $data += validateAddingProductToShoppingCart();            
+            $data += handleActions($data);            
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items
@@ -87,6 +87,24 @@
         $data['page'] = $page;
     
         return $data;
+    }
+
+    function handleActions($data) {
+
+        //handleActions zorgt voor de afhandeling van bijvoorbeeld het toevoegen van een product aan de cart
+        $action = getPostVar('action');
+        switch ($action) {
+            case "addToCart":
+                $data += validateAddingProductToShoppingCart();
+                    if ($data['valid']){
+                        addProductToShoppingCart($data['product_id'], $data['quantity']);
+                    }
+                return $data;
+            default:
+                //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
+                $data += array('errProduct_id' => "", 'errQuantity' => "");
+                return $data;
+        }
     }
 
     function showResponsePage($data){

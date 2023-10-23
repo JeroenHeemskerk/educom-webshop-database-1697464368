@@ -17,14 +17,15 @@
         echo '</form>';
     }
 
-    function showShopBuyAction($product_id, $page) {
+    function showShopBuyAction($product_id, $page, $buttonText) {
         if (isUserLoggedIn()) {
             showFormStart();
-            echo '<input type="hidden" name="page" value="' . $page . '">
-            <input type="hidden" name="product_id" value="' . $product_id . '">';
+            echo '<input type="hidden" name="page" value="' . $page . '">' .
+            '<input type="hidden" name="product_id" value="' . $product_id . '">' .
+            '<input type="hidden" name="action" value="addToCart"';
             showFormField('quantity', 'Aantal', 'text');
             echo '" placeholder="0">';
-            echo '<input type="submit" value="+">
+            echo '<input type="submit" value="' . $buttonText . '">
             </form>';     
         }
     }
