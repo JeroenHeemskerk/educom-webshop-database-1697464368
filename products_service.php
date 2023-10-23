@@ -6,11 +6,11 @@
             $product = getWebshopProduct($page);
         }
         catch(Exception $e) {
-            $genericErr = "Helaas kunnen wij dit product op dit moment niet laten zien. Probeer het later opnieuw.";
+            $genericError = "Helaas kunnen wij dit product op dit moment niet laten zien. Probeer het later opnieuw.";
             logError($e->getMessage()); //Schrijf $e naar log functie
         }
 
-        return array("product" => $product);
+        return array('product' => $product, 'genericError' => $genericError);
     }
 
     function getWebshopProducts() {
@@ -19,12 +19,12 @@
         $products = getAllProducts();
     }
     catch(Exception $e) {
-        $genericErr = "Helaas kunnen wij de producten op dit moment niet laten zien. Probeer het later opnieuw.";
+        $genericError = "Helaas kunnen wij de producten op dit moment niet laten zien. Probeer het later opnieuw.";
         logError($e->getMessage()); //Schrijf $e naar log functie
     }
     
 
-    return array("products" => $products);
+    return array('products' => $products, 'genericError' => $genericError);
     }
 
     function doesProductExist($product_id) {
