@@ -43,8 +43,8 @@
 
     function checkProduct_id($product_id){
 
-        if ($product_id <= 0 || $product_id > 10000 || !is_numeric($product_id)) {
-            return "Niet bestaand product id";
+        if ($product_id <= 0 || $product_id >= 1000000000 || !is_numeric($product_id)) {
+            return "Het toe te voegen product bestaat niet";
         }
     }
 
@@ -233,8 +233,7 @@
 
     function validateAddingProductToShoppingCart() {
 
-        $product_id = $quantity = $errProduct_id = $errQuantity = "";
-        $valid = False;
+        $product_id = $quantity = $errProduct_id = $errQuantity = $genericError =  "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -251,10 +250,18 @@
             
             //Indien sprake is van correcte input wordt het product aan de cart toegevoegd
             if ($errProduct_id == "" && $errQuantity == "") {
-                addProductToShoppingCart($product_id, $quantity);
+
+                try {
+                    if (doesProductExist($product_id)) {
+                        addProductToShoppingCart($product_id, $quantity);
+                    }
+                } catch(Exception $e) {
+                    $genericErr = "Er is iets fout gegaan. Een niet bestaand product is opgevraagd. Probeer het later opnieuw.";
+                    logError($e->getMessage()); //Schrijf $e naar log functie
+                }
             }
         }
 
-        return array('errProduct_id' => $errProduct_id, 'errQuantity' => $errQuantity);
+        return array('errProduct_id' => $errProduct_id, 'errQuantity' => $errQuantity, 'genericError' => $genericError);
     }
 ?>

@@ -1,7 +1,6 @@
 <?php
     
     function storeUser($email, $name, $password){
-        include 'file_repository.php';
         registerNewAccount($name, $email, $password);
     }
 
