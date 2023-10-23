@@ -1,10 +1,10 @@
 <?php
 
-    function getWebshopProductDetails($page) {
+    function getWebshopProductDetails($product_id) {
         
         $genericError = "";
         try {
-            $product = getWebshopProduct($page);
+            $product = getWebshopProduct($product_id);
         }
         catch(Exception $e) {
             $genericError = "Helaas kunnen wij dit product op dit moment niet laten zien. Probeer het later opnieuw.";

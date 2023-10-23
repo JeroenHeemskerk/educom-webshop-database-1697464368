@@ -23,6 +23,16 @@
             return getUrlVar('page', 'home');            
         }
     }
+
+    function getVar($key, $default='') {
+
+        //Combineert getPostVar en getUrlVar zodat één aanroep voldoende is
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            return getPostVar($key);
+        } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            return getUrlVar($key);
+        }
+    }
     
     function getPostVar($key, $default=''){
         return isset($_POST[$key]) ? $_POST[$key] : $default;
@@ -64,13 +74,11 @@
                 createShoppingCart();
                 $data += handleActions($data);           
                 break;
-        }
-
-        //Op basis van of enkel getallen zijn ingevoerd in de GET-request wordt het product getoond
-        if (is_numeric($page)) {
-            $data = getWebshopProductDetails($page);
-            createShoppingCart();
-            $data += handleActions($data);            
+            case "details":
+                $data = getWebshopProductDetails(getVar('product_id'));
+                createShoppingCart();
+                $data += handleActions($data);
+                break;
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items
@@ -92,7 +100,7 @@
     function handleActions($data) {
 
         //handleActions zorgt voor de afhandeling van bijvoorbeeld het toevoegen van een product aan de cart
-        $action = getPostVar('action');
+        $action = getVar('action');
         switch ($action) {
             case "addToCart":
                 $data += validateAddingProductToShoppingCart();
