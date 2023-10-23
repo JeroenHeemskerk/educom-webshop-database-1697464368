@@ -214,7 +214,7 @@
                 case "webshop":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
-                case "details"
+                case "details":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 default:
@@ -257,12 +257,15 @@
             case "webshop":
                 require_once 'webshop.php';
                 return getWebshopHeader();
+            case "details":
+                require_once 'product.php';
+                return getProductHeader();
             case "cart":
                 require_once 'cart.php';
                 return getCartHeader();
             default:
-                require_once 'product.php';
-                return getProductHeader();
+                require_once 'home.php';
+                return getHomeHeader();
         }
     }
 
