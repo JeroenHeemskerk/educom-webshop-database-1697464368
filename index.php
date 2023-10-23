@@ -62,7 +62,7 @@
             case "webshop":
                 $data = getWebshopProducts();
                 createShoppingCart();
-                addProductToShoppingCart();
+                $data += validateAddingProductToShoppingCart();                
                 break;
         }
 
@@ -70,7 +70,7 @@
         if (is_numeric($page)) {
             $data = getWebshopProductDetails($page);
             createShoppingCart();
-            addProductToShoppingCart();
+            $data += validateAddingProductToShoppingCart();            
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items

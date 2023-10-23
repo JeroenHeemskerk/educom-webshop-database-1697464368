@@ -9,12 +9,19 @@
         echo '<h2>Ons assortiment</h2>';
         print_r($_SESSION);
         echo '<br><br>';
+        print_r($data);
+        echo '<br><br>';
+        //var_dump($data['products'][0]);
+        //echo '<br><br>';
         showWebshopProducts($data);
     }
 
     function showWebshopProducts($data) {
         
         $amountOfProducts = count($data['products'][0]);
+
+        echo '<span>' . $data['errProduct_id'] . '</span>';
+        echo '<span>' . $data['errQuantity'] . '</span>';
 
         //Geeft per product het product_id, name, description, price en product_picture_location weer 
         for ($i = 0; $i < $amountOfProducts; $i++){
@@ -26,7 +33,7 @@
             '<img src="' . $data['products'][$i]['product_picture_location'] . '" alt="Een foto">' .
             '</div></a>';
             
-            showIncrementButton($data['products'][$i]['product_id'], 'webshop');
+            showShopBuyAction($data['products'][$i]['product_id'], 'webshop');
         }
             
     }

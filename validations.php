@@ -20,11 +20,42 @@
         }
         return "";
     }
+
+    function checkName($name) {    
+		
+		if (empty($name)) {
+			return "Naam moet ingevuld zijn";
+
+		//Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
+		} else if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+			return "Enkel letters en whitespaces zijn toegestaan";
+		} else {
+			return "";
+		}
+    }
     
     function checkPassword($password) {   
 	
         if ($password == ""){
             return "Er is geen wachtwoord opgegeven";
+        }
+    }
+
+    function checkProduct_id($product_id){
+
+        if ($product_id <= 0 || $product_id > 10000 || !is_numeric($product_id)) {
+            return "Niet bestaand product id";
+        }
+    }
+
+    function checkQuantity($quantity) {
+
+        if (!is_numeric($quantity)) {
+            return "Er moet bij 'Aantal' een getal opgegeven worden";
+        } else if ($quantity <= 0) {
+            return "De hoeveelheid aan te schaffen producten moet hoger dan 0 zijn";
+        } else if ($quantity > 100) {
+            return "Er kunnen niet meer dan 100 van hetzelfde product tegelijkertijd aangeschaft worden";
         }
     }
     
@@ -40,19 +71,6 @@
 			return "De wachtwoorden moeten gelijk zijn aan elkaar";
 		}
 			
-    }
-    
-    function checkName($name) {    
-		
-		if (empty($name)) {
-			return "Naam moet ingevuld zijn";
-
-		//Als name niet leeg is wordt gekeken of er enkel letters en whitespaces ingevuld zijn
-		} else if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-			return "Enkel letters en whitespaces zijn toegestaan";
-		} else {
-			return "";
-		}
     }
     
     function testInput($input) {
@@ -211,5 +229,32 @@
         }
     
         return array('name' => $name, 'errName' => $errName, 'email' => $email, 'errMail' => $errMail, 'password' => $password, 'passwordTwo' => $passwordTwo, 'errPassword' => $errPassword, 'genericError' => $genericError, 'valid' => $valid, 'page' => "");
+    }
+
+    function validateAddingProductToShoppingCart() {
+
+        $product_id = $quantity = $errProduct_id = $errQuantity = "";
+        $valid = False;
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            //Eerst worden ongewenste karakters verwijderd
+            $product_id = testInput(getPostVar("product_id"));
+            $quantity = testInput(getPostVar("quantity"));
+
+            //$quantity wordt naar een integer gecast zodat er mee gerekend kan worden
+            $quantity = (int)$quantity;
+
+            //Vervolgens wordt gekeken of correcte input gegeven is
+            $errProduct_id = checkProduct_id($product_id);
+            $errQuantity = checkQuantity($quantity);
+            
+            //Indien sprake is van correcte input wordt het product aan de cart toegevoegd
+            if ($errProduct_id == "" && $errQuantity == "") {
+                addProductToShoppingCart($product_id, $quantity);
+            }
+        }
+
+        return array('errProduct_id' => $errProduct_id, 'errQuantity' => $errQuantity);
     }
 ?>

@@ -14,6 +14,7 @@
     
     function logoutUser() {        
         unset($_SESSION['user']);
+        unset($_SESSION['cart']);
     }
     
     function createShoppingCart() {
@@ -22,18 +23,13 @@
         }
     }
 
-    function addProductToShoppingCart() {
+    function addProductToShoppingCart($product_id, $quantity) {
 
-        $product = getPostVar('product');
-
-        //Indien product met de POST-request meegegeven is wordt deze toegevoegd aan cart
-        if ($product != ""){ 
-
-            if (!isset($_SESSION['cart'][$product])){
-                $_SESSION['cart'][$product] = 1;
-            } else {
-                $_SESSION['cart'][$product] += 1;
-            }
-        }
+        //Product wordt eerst geset indien deze nog niet aangemaakt was in de array
+        if (!isset($_SESSION['cart'][$product_id])){
+            $_SESSION['cart'][$product_id] = 0;
+        } 
+            
+        $_SESSION['cart'][$product_id] += $quantity;
     }
 ?>

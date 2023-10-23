@@ -29,11 +29,11 @@
         
     
         //Formulier met naam, emailadres en telefoonnummer
-        showFormField("name", "Naam:", "text", $data);
+        showFormField("name", "Naam:", "text");
         echo 'value="' . $data['name'] . '"><span>' . $data['errName'] . '</span><br>';
-        showFormField("email", "Emailadres:", "text", $data);
+        showFormField("email", "Emailadres:", "text");
         echo 'value="' . $data['email'] . '"><span>' . $data['errMail'] . '</span><br>';
-        showFormField("phonenumber", "Telefoonnummer:", "text", $data);
+        showFormField("phonenumber", "Telefoonnummer:", "text");
         echo 'value="' . $data['phonenumber'] . '"><span>' . $data['errPhonenumber'] . '</span><br><br>';
     
         //Radio button met contactwijze

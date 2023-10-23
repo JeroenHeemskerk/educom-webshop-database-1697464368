@@ -8,8 +8,8 @@
         
         //Create connectie
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-        //Check connectie en laat een error zien indien database niet te bereiken is
-		
+
+        //Check connectie en laat een error zien indien database niet te bereiken is		
 		if (!$conn) {
 			throw new Exception('Connectie met database is niet tot stand gekomen');
 		}

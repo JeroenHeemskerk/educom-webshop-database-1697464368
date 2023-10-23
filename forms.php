@@ -1,6 +1,6 @@
 <?php
 
-    function showFormField($fieldName, $label, $inputType, $data) {        
+    function showFormField($fieldName, $label, $inputType) {        
 		
 		if ($inputType == "text"){
 			echo '<label for="' . $fieldName . '">' . $label . '</label>
@@ -17,12 +17,14 @@
         echo '</form>';
     }
 
-    function showIncrementButton($product, $page) {
+    function showShopBuyAction($product_id, $page) {
         if (isUserLoggedIn()) {
             showFormStart();
             echo '<input type="hidden" name="page" value="' . $page . '">
-            <input type="hidden" name="product" value="' . $product . '">
-            <input type="submit" value="+">
+            <input type="hidden" name="product_id" value="' . $product_id . '">';
+            showFormField('quantity', 'Aantal', 'text');
+            echo '" placeholder="0">';
+            echo '<input type="submit" value="+">
             </form>';     
         }
     }
