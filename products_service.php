@@ -2,6 +2,7 @@
 
     function getWebshopProductDetails($page) {
         
+        $genericError = "";
         try {
             $product = getWebshopProduct($page);
         }
