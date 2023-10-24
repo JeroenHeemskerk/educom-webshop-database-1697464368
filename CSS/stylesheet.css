@@ -19,10 +19,6 @@ footer {
     text-align: right;
 }
 
-ul {
-    list-style-type:circle;
-}
-
 /*aanpassen van de breedte van de inputvelden bij het contactformulier*/
 input, textarea {
     width: 400px;
@@ -40,6 +36,16 @@ img {
 
 span {
     color: red;
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+ul {
+    list-style-type:circle;
 }
 
 .error {

@@ -53,7 +53,7 @@
                 $product = $products[$product_id];
                 $subTotal = $product['price'] * $amount;
                 $total += $subTotal;
-                $cartLines[$product_id] = array('name' => $product['name'], 'amount' => $amount, 'subTotal' => $subTotal);
+                $cartLines[$product_id] = array('name' => $product['name'], 'description' => $product['description'], 'price' => $product['price'], 'product_picture_location' => $product['product_picture_location'], 'amount' => $amount, 'subTotal' => $subTotal);
             }
         }
         catch(Exception $e) {

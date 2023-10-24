@@ -5,7 +5,7 @@
     }
 
     function showCartBody($data) {
-        echo '<h2>Pagina wordt nog gebouwd</h2>';
+        echo '<h2>Uw selectie:</h2>';
 
         if (!empty($data['cartLines'])){
             showTable($data);

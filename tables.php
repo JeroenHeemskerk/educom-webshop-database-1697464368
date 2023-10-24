@@ -3,50 +3,34 @@
 function showTable($data) {
 
     print_r($data);
-    tableStart();
-    echo '<tr>' . 
-    headerCell('Product id:') . 
-    headerCell('Naam:') . 
-    headerCell('Beschrijving:') . 
-    headerCell('Prijs:') . 
-    headerCell('Foto:') . 
-    headerCell('Hoeveelheid') . 
-    '</tr>';
+    echo '<br><br><br>';
 
-    /*
-    echo '<tr>' . 
-        '<td>' . $data['product']['product_id'] . '</td>' . 
-        '<td>' . $data['product']['name'] . '</td>' . 
-        '<td>' . $data['product']['description'] . '</td>' . 
-        '<td>' . $data['product']['price'] . '</td>' . 
-        '<td>' . $data['product']['product_picture_location'] . '</td>' . 
-        '<td>' . $data['cart'][$data['product']['product_id']] . '</td>' .
-        '</tr>';
-        */
-    
-    echo '<tr>';
-    foreach ($data['cart'] as $product_id => $amount){
-        foreach ($data['productsInCart'][$product_id] as $key => $value){
-            echo '<td>' . $value . '</td>';
-        }
-        echo '<td>' . $amount . '</td>';
-    }
+    tableStart();
+    echo '<tr>';  
+    headerCell('Foto:'); 
+    headerCell('Naam:');
+    headerCell('Beschrijving:');
+    headerCell('Prijs per stuk:');
+    headerCell('Hoeveelheid:');
+    headerCell('Subtotaal:');
     echo '</tr>';
     
-    echo '<tr>' . 
-    dataCell() . 
-    dataCell() . 
-    dataCell() . 
-    dataCell() . 
-    dataCell() . 
-    dataCell(/*Totaal*/) . 
-    '</tr>';
+    foreach ($data['cartLines'] as $product_id => $value){
+        echo '<tr>';
+        dataCell('<img src="' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">');
+        dataCell($data['cartLines'][$product_id]['name']);
+        dataCell($data['cartLines'][$product_id]['description']);
+        dataCell('€' . $data['cartLines'][$product_id]['price']);
+        dataCell($data['cartLines'][$product_id]['amount']);
+        dataCell('€'. $data['cartLines'][$product_id]['subTotal']);
+        echo '</tr>';
+    }
 
     tableEnd();
 }
 
 function dataCell($value = "") {
-    echo '<td>' . $value . '<td>';
+    echo '<td>' . $value . '</td>';
 }
 
 function headerCell($value) {
