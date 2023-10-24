@@ -26,6 +26,12 @@ function showTable($data) {
         echo '</tr>';
     }
 
+    echo '<tr>' . 
+    '<td colspan="4"></td>';
+    dataCell('Totaal:');  
+    dataCell('€' . $data['total']);
+    echo '</tr>';   
+
     tableEnd();
 }
 
