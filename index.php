@@ -81,17 +81,9 @@
                 $data += handleActions($data);
                 break;
             case "cart":
-                $data['cart'] = getShoppingCart();
-                //print_r($data['cart']);
-                //echo '<br><br>';
-
-                //$i = 0;
-                //foreach ($data['cart'] as $product_id => $amount) {
-                    //$data['products'][$product_id] = getWebshopProductDetails($product_id);
-                    //$i++;
-                //}
-
-                //print_r($data);
+                $cart = getShoppingCart();
+                $data = getCartLines($cart);
+                $data += handleActions($data);
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items

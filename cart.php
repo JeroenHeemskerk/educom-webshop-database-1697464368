@@ -7,7 +7,7 @@
     function showCartBody($data) {
         echo '<h2>Pagina wordt nog gebouwd</h2>';
 
-        if (!empty($data['cart'])){
+        if (!empty($data['cartLines'])){
             showTable($data);
         } else {
             echo '<h2>Er is nog niets te tonen nu de winkelmand nog leeg is. U kunt in de webshop ' . 

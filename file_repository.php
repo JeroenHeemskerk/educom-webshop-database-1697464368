@@ -100,19 +100,15 @@
                 throw new Exception('Producten konden niet uitgelezen worden uit de database');
             }
 
-            //Output gevonden rijen
-            if (mysqli_num_rows($result) > 0) {
+            $products = array();
 
-                $counter = 0;
-                while ($row = mysqli_fetch_assoc($result)) {
-                    
-                    //Counter zorgt ervoor dat een nieuwe rij op de volgende plek in de tweedimensionale array terecht komt
-                    $products[$counter] = $row;
-                    $counter++;
-                }
-
-                return $products;
+            while ($row = mysqli_fetch_assoc($result)) {
+                
+                $products[$row["product_id"]] = $row;
             }
+
+            return $products;
+            
         } finally {
             disconnectFromDatabase($conn);  
         }

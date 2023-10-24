@@ -26,7 +26,7 @@ function showTable($data) {
     
     echo '<tr>';
     foreach ($data['cart'] as $product_id => $amount){
-        foreach ($data['products'][$product_id] as $key => $value){
+        foreach ($data['productsInCart'][$product_id] as $key => $value){
             echo '<td>' . $value . '</td>';
         }
         echo '<td>' . $amount . '</td>';

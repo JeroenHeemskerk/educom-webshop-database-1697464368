@@ -17,13 +17,13 @@
 
     function showWebshopProducts($data) {
         
-        $amountOfProducts = count($data['products'][0]);
+        $amountOfProducts = count($data['products'][1]);
 
         echo '<span>' . $data['errProduct_id'] . '</span>';
         echo '<span>' . $data['errQuantity'] . '</span>';
 
         //Geeft per product het product_id, name, description, price en product_picture_location weer 
-        for ($i = 0; $i < $amountOfProducts; $i++){
+        for ($i = 1; $i < $amountOfProducts; $i++){
             echo '<a class="productlink" href="index.php?page=details&product_id=' . $data['products'][$i]['product_id'] . '"><div>' .
             'Product id: ' . $data['products'][$i]['product_id'] . '<br>' .
             'Artikel: ' . $data['products'][$i]['name'] . '<br>' .
