@@ -6,7 +6,7 @@
 
     function showCartBody($data) {
         echo '<br>';
-
+        print_r($data);
         if (!empty($data['cartLines'])){
             showTable($data);
             showBuyAction('Koop nu!');

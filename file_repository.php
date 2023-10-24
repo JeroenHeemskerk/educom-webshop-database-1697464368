@@ -113,4 +113,15 @@
             disconnectFromDatabase($conn);  
         }
     }
+
+    function writeOrderToDatabase($cartLines) {
+
+        $conn = connectToDatabase();
+
+        foreach ($cartLines as $key => $value){
+            $sql = "INSERT INTO order_row (order_id, product_id, amount)
+            VALUES (" . ;
+        }
+
+    }
 ?>

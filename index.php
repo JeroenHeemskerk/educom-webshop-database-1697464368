@@ -114,7 +114,8 @@
                     }
                 return $data;
             case "completeOrder":
-                  
+                  writeOrder($data);
+                  //emptyShoppingCart();
             default:
                 //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
                 //ook wordt rekening gehouden met of de $data array al bestaat of niet

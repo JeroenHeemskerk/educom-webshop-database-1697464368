@@ -51,9 +51,8 @@
         
     }
 
-    function writeOrder($cart) {
-
-        
+    function writeOrder($data) {
+        writeOrderToDatabase($data['cartLines']);
     }
 
     function doesProductExist($product_id) {

@@ -23,6 +23,10 @@
         }
     }
 
+    function emptyShoppingCart() {
+        unset($_SESSION['cart']);
+    }
+
     function addProductToShoppingCart($product_id, $quantity) {
 
         //Product wordt eerst geset indien deze nog niet aangemaakt was in de array
