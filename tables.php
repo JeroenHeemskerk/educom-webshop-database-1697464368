@@ -16,21 +16,28 @@ function showTable($data) {
     echo '</tr>';
     
     foreach ($data['cartLines'] as $product_id => $value){
+        echo '<a class="productLink" href="index.php?page=details&product_id=' . $product_id . '"><div>';
         echo '<tr>';
-        dataCell('<img src="' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">');
-        dataCell($data['cartLines'][$product_id]['name']);
-        dataCell($data['cartLines'][$product_id]['description']);
+        dataCell('<img src="' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">', $product_id);
+        dataCell($data['cartLines'][$product_id]['name'], $product_id);
+        dataCell($data['cartLines'][$product_id]['description'], $product_id);
         dataCell('€' . $data['cartLines'][$product_id]['price']);
         dataCell($data['cartLines'][$product_id]['amount']);
         dataCell('€'. $data['cartLines'][$product_id]['subTotal']);
         echo '</tr>';
+        echo '</div></a>';
     }
 
     tableEnd();
 }
 
-function dataCell($value = "") {
-    echo '<td>' . $value . '</td>';
+function dataCell($value = "", $product_id = "") {
+    if ($product_id != ""){
+        echo '<td><a class="productLink" href="index.php?page=details&product_id=' . $product_id . '"><div class="pagetext">' . $value . '</div></a></td>';
+    } else {
+        echo '<td>' . $value . '</td>';
+    }
+    
 }
 
 function headerCell($value) {
@@ -38,7 +45,7 @@ function headerCell($value) {
 }
 
 function tableStart() {
-    echo '<table>';
+    echo '<table class="center">';
 }
 
 function tableEnd() {
