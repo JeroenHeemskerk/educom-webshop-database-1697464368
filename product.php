@@ -16,6 +16,6 @@
         echo '<span>' . $data['errProduct_id'] . '</span><br>' .
         '<span>' . $data['errQuantity'] . '</span><br>';
 
-        showShopBuyAction($data['product']['product_id'], 'details', 'Voeg toe aan winkelwagen');
+        showAddToCartAction($data['product']['product_id'], 'details', 'Voeg toe aan winkelwagen');
     }
 ?>

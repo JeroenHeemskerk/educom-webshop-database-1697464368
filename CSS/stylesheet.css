@@ -33,6 +33,12 @@ input[type=submit], input[type=radio] {
     width: auto;
 }
 
+.buyActionButton {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+}
+
 img {
     width: 100px;
     height: 100px;

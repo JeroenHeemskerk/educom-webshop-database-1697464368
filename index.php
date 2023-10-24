@@ -112,7 +112,9 @@
                     if ($data['valid']){
                         addProductToShoppingCart($data['product_id'], $data['quantity']);
                     }
-                return $data;  
+                return $data;
+            case "completeOrder":
+                  
             default:
                 //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
                 //ook wordt rekening gehouden met of de $data array al bestaat of niet

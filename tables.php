@@ -27,8 +27,7 @@ function showTable($data) {
     '<td colspan="4"></td>';
     dataCell('Totaal:');  
     dataCell('€' . $data['total']);
-    echo '</tr>';   
-
+    echo '</tr>';
     tableEnd();
 }
 
