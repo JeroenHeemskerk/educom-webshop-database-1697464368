@@ -1,7 +1,7 @@
 <?php
 
     function getCartHeader() {
-        return "Winkelmandje";
+        return "Winkelwagen";
     }
 
     function showCartBody($data) {
