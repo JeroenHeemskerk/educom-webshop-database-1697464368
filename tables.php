@@ -8,7 +8,7 @@ function showTable($data) {
     tableStart();
     echo '<tr>';  
     headerCell('Foto:'); 
-    headerCell('Naam:');
+    headerCell('Product:');
     headerCell('Beschrijving:');
     headerCell('Prijs per stuk:');
     headerCell('Hoeveelheid:');
@@ -16,16 +16,14 @@ function showTable($data) {
     echo '</tr>';
     
     foreach ($data['cartLines'] as $product_id => $value){
-        echo '<a class="productLink" href="index.php?page=details&product_id=' . $product_id . '"><div>';
         echo '<tr>';
-        dataCell('<img src="' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">', $product_id);
+        dataCell('<img class="tablePicture" src="' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">', $product_id);
         dataCell($data['cartLines'][$product_id]['name'], $product_id);
         dataCell($data['cartLines'][$product_id]['description'], $product_id);
         dataCell('€' . $data['cartLines'][$product_id]['price']);
         dataCell($data['cartLines'][$product_id]['amount']);
         dataCell('€'. $data['cartLines'][$product_id]['subTotal']);
         echo '</tr>';
-        echo '</div></a>';
     }
 
     tableEnd();
