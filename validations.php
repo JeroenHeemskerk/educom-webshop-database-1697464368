@@ -242,9 +242,6 @@
             $product_id = testInput(getPostVar("product_id"));
             $quantity = testInput(getPostVar("quantity"));
 
-            //$quantity wordt naar een integer gecast zodat er mee gerekend kan worden
-            //$quantity = (int)$quantity;
-
             //Vervolgens wordt gekeken of correcte input gegeven is
             $errProduct_id = checkProduct_id($product_id);
             $errQuantity = checkQuantity($quantity);
