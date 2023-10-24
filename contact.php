@@ -1,5 +1,8 @@
 <?php
 
+    define("SALUTATIONS", array("mr." => "Dhr.", "mrs." => "Mvr.", "neither" => "Geen van beide"));
+    define("COMM_PREFS", array("email" => "E-mail", "phone" => "Telefoon"));
+    
 	function getContactHeader() {
         return "Contact";
     }
@@ -52,20 +55,5 @@
     
         //Verzendknop
         showFormEnd();    
-        }
-    
-    /*    
-    function showContactBodyTwo($data) {
-        showFormStart();
-        
-        showFormField("name", "Naam:", "text", $data);
-        showFormField("email", "Emailadres:", "text", $data);
-        showFormField("phonenumber", "Telefoonnummer:", "text", $data);
-        //showFormField("salutation", "Aanhef:", 
-        
-        
-        showFormEnd();
-    }
-    */            
-        
+        }        
 ?>
