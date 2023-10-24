@@ -5,12 +5,12 @@ function showTable($data) {
     print_r($data);
     tableStart();
     echo '<tr>' . 
-    '<th>Product id:</th>' . 
-    '<th>Naam:</th>' . 
-    '<th>Beschrijving:</th>' . 
-    '<th>Prijs:</th>' . 
-    '<th>Foto:</th>' . 
-    '<th>Hoeveelheid</th>' . 
+    headerCell('Product id:') . 
+    headerCell('Naam:') . 
+    headerCell('Beschrijving:') . 
+    headerCell('Prijs:') . 
+    headerCell('Foto:') . 
+    headerCell('Hoeveelheid') . 
     '</tr>';
 
     /*
@@ -31,9 +31,26 @@ function showTable($data) {
         }
         echo '<td>' . $amount . '</td>';
     }
-    echo '</tr>';    
+    echo '</tr>';
+    
+    echo '<tr>' . 
+    dataCell() . 
+    dataCell() . 
+    dataCell() . 
+    dataCell() . 
+    dataCell() . 
+    dataCell(/*Totaal*/) . 
+    '</tr>';
 
     tableEnd();
+}
+
+function dataCell($value = "") {
+    echo '<td>' . $value . '<td>';
+}
+
+function headerCell($value) {
+    echo '<th>' . $value . '</th>';
 }
 
 function tableStart() {

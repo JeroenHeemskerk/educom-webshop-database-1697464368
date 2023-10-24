@@ -32,7 +32,7 @@
             '<img src="' . $data['products'][$i]['product_picture_location'] . '" alt="Een foto">' .
             '</div></a>';
             
-            showShopBuyAction($data['products'][$i]['product_id'], 'webshop', 'Buy');
+            showShopBuyAction($data['products'][$i]['product_id'], 'webshop', 'Voeg toe aan winkelwagen');
         }
             
     }

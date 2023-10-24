@@ -85,11 +85,11 @@
                 //print_r($data['cart']);
                 //echo '<br><br>';
 
-                $i = 0;
-                foreach ($data['cart'] as $product_id => $amount) {
-                    $data['products'][$product_id] = getWebshopProductDetails($product_id);
-                    $i++;
-                }
+                //$i = 0;
+                //foreach ($data['cart'] as $product_id => $amount) {
+                    //$data['products'][$product_id] = getWebshopProductDetails($product_id);
+                    //$i++;
+                //}
 
                 //print_r($data);
         }
