@@ -203,7 +203,7 @@
         foreach($data['menu'] as $link => $label) {
             showMenuItem($link, $label);
         }
-        echo '</ul><br>';                
+        echo '</ul><br>';    
     }
 
     function showMenuItem($page, $title) {

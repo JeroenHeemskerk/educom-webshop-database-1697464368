@@ -2,9 +2,6 @@
 
 function showTable($data) {
 
-    print_r($data);
-    echo '<br><br><br>';
-
     tableStart();
     echo '<tr>';  
     headerCell('Foto:'); 

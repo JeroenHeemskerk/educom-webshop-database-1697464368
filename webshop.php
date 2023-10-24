@@ -7,11 +7,6 @@
     function showWebshopBody($data) {
      
         echo '<h2>Ons assortiment</h2>';
-        print_r($_SESSION);
-        echo '<br><br>';
-        print_r($data);
-        echo '<br><br>';
-
         showWebshopProducts($data);
     }
 

@@ -8,12 +8,7 @@
         
         echo '<h2>' . $data['product']["name"] . '</h2>';
 
-        print_r($_SESSION);
-        echo '<br><br>';
-        print_r($data);
-        echo '<br><br>';
-
-        echo '<img src="' . $data['product']["product_picture_location"] . '" class="productpage" alt="Een foto"><br>' .
+        echo '<img src="' . $data['product']["product_picture_location"] . '" class="detailPicture" alt="Een foto"><br>' .
         'Artikel: ' . $data['product']["name"] . '<br>' .
         'Beschrijving: ' . $data['product']["description"] . '<br>' .
         'Prijs: €' . $data['product']["price"] . '<br>';
