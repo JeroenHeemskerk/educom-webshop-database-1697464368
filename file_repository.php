@@ -160,7 +160,8 @@
             INNER JOIN products
                 ON order_row.product_id=product.product_id
             INNER JOIN orders 
-                ON order_row.order_id=orders.order_id AND orders.user_id ='" . $userId . "'";
+                ON order_row.order_id=orders.order_id
+            WHERE orders.user_id='" . $userId . "'";
 
             $result = mysqli_query($conn, $sql);
 
@@ -172,7 +173,7 @@
 
             while ($row = mysqli_fetch_assoc($result)) {
                 
-                $orders[$row["orderAndSum"]] = $row;
+                $orders[$row["order_id"]] = $row;
             }
 
             return $orders;
