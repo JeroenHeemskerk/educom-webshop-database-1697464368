@@ -84,6 +84,9 @@
                 $cart = getShoppingCart();
                 $data = getCartLines($cart);
                 $data = handleActions($data);
+                break;
+            case "orders":
+                break;
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items
@@ -91,6 +94,7 @@
         $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact', 'webshop' => 'Webshop');
         if (isUserLoggedIn()) {
             $data['menu']['cart'] = "Winkelwagen";
+            $data['menu']['orders'] = "Orders";
             $data['menu']['logout'] = "Logout " . getLoggedInUserName();
         } else {
             $data['menu']['register'] = "Register";
@@ -197,6 +201,9 @@
             case "cart":
                 showCartBody($data);
                 break;
+            case "orders":
+                showOrdersBody($data);
+                break;
             default:
                 showProductBody($data);
                 break;
@@ -283,6 +290,9 @@
             case "cart":
                 require_once 'cart.php';
                 return getCartHeader();
+            case "orders":
+                require_once 'orders.php';
+                return getOrdersHeader();
             default:
                 require_once 'home.php';
                 return getHomeHeader();
