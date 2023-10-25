@@ -24,7 +24,7 @@
             'Artikel: ' . $data['products'][$i]['name'] . '<br>' .
             'Beschrijving: ' . $data['products'][$i]['description'] . '<br>' .
             'Prijs: €' . $data['products'][$i]['price'] . '<br>' .
-            '<img src="' . $data['products'][$i]['product_picture_location'] . '" alt="Een foto">' .
+            '<img src="/educom-webshop-database-1697464368/Images/' . $data['products'][$i]['product_picture_location'] . '" alt="' . $data['products'][$i]['product_picture_location'] . '">' .
             '</div></a>';
             
             showAddToCartAction($data['products'][$i]['product_id'], 'webshop', 'Voeg toe aan winkelwagen');
