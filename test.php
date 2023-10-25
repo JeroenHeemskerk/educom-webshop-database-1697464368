@@ -1,18 +1,70 @@
 <?php
-$servername = "localhost";
-$username = "WebShopUser";
-$password = "Testtest!";
-$dbname = "nicks_webshop";
 
-//vs test
+    getOrdersFromDatabase();
 
-//Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-//Check connectionif ($conn
-if (!$conn) {
-    die('Connection failed: ' . mysqli_connect_error());
-}
-echo 'Connected succesfully<br>';
+    function connectToDatabase() {        
+        $servername = "localhost";
+        $username = "WebShopUser";
+        $password = "Testtest!";
+        $dbname = "nicks_webshop";
+        
+        //Create connectie
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        //Check connectie en laat een error zien indien database niet te bereiken is		
+		if (!$conn) {
+			throw new Exception('Connectie met database is niet tot stand gekomen');
+		}
+		            
+        return $conn;
+        
+    }
+
+    function getUserIdByEmail() {
+
+        return 1;
+    }
+
+    function getOrdersFromDatabase() {
+
+        $userId = getUserIdByEmail();
+
+        $conn = connectToDatabase();
+
+        $sql = "SELECT order_row.order_id, order_row.row_id, order_row.product_id,
+            order_row.amount, products.price, price * amount
+            FROM order_row
+            INNER JOIN products
+                ON order_row.product_id=products.product_id
+            INNER JOIN orders 
+                ON order_row.order_id=orders.order_id
+            WHERE orders.user_id='" . $userId . "'
+            ORDER BY row_id"; //Hier kan denk ik nog WHERE order_id op klik op pagina
+
+        /*
+        $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
+        FROM order_row
+        INNER JOIN products
+            ON order_row.product_id=products.product_id
+        INNER JOIN orders 
+            ON order_row.order_id=orders.order_id
+        WHERE orders.user_id='" . $userId . "'
+        GROUP BY order_row.order_id";
+        */
+
+        $result = mysqli_query($conn, $sql);
+
+        $orders = array();
+        $i = 0;
+        while ($row = mysqli_fetch_assoc($result)) {
+                
+            $orders[$row['row_id']] = $row;
+            $i++;
+        }
+
+            print_r($orders);
+        }
+
 
 /*
 //Nieuw record klaar zetten
@@ -40,6 +92,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "Geen resultaten";
 }*/
 
+/*
 $email = "bob@hotmail.com";
 
 try {
@@ -54,7 +107,7 @@ try {
 }
 finally {
     mysqli_close($conn);
-}
+}*/
 
 //user_id name email_address password
 

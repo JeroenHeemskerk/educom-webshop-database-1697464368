@@ -155,13 +155,14 @@
             */
 
 
-            $sql = "SELECT order_row.order_id, SUM(order_row.amount) * products.price
+            $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
             FROM order_row
             INNER JOIN products
-                ON order_row.product_id=product.product_id
+                ON order_row.product_id=products.product_id
             INNER JOIN orders 
                 ON order_row.order_id=orders.order_id
-            WHERE orders.user_id='" . $userId . "'";
+            WHERE orders.user_id='" . $userId . "'
+            GROUP BY order_row.order_id";
 
             $result = mysqli_query($conn, $sql);
 
