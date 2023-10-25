@@ -8,7 +8,7 @@
         
         echo '<h2>' . $data['product']["name"] . '</h2>';
 
-        echo '<img src="/educom-webshop-database-1697464368/Images/' . $data['product']["product_picture_location"] . '" class="detailPicture" alt="' . $data['products'][$i]['product_picture_location'] . '"><br>' .
+        echo '<img src="/educom-webshop-database-1697464368/Images/' . $data['product']["product_picture_location"] . '" class="detailPicture" alt="' . $data['product']["product_picture_location"] . '"><br>' .
         'Artikel: ' . $data['product']["name"] . '<br>' .
         'Beschrijving: ' . $data['product']["description"] . '<br>' .
         'Prijs: €' . $data['product']["price"] . '<br>';
