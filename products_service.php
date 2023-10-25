@@ -52,7 +52,20 @@
     }
 
     function writeOrder($data) {
-        writeOrderToDatabase($data['cartLines']);
+
+        $genericError = "";
+        $valid = False;
+        try {
+            writeOrderToDatabase($data['cartLines']);
+        } catch (Exception $e) {
+            $genericError = "Door een technisch probleem is het op dit moment helaas niet mogelijk om iets aan te schaffen. Probeer het op een later moment nogmaals.<br>";
+            logError($e->getMessage()); //Schrijf $e naar log functie (deze doet niks op dit moment want is conform opdracht niet geïmplementeerd)
+        }
+
+        if ($genericError == "") {
+            $valid = True;
+        }
+        return array('genericError' => $genericError, 'valid' => $valid);
     }
 
     function doesProductExist($product_id) {

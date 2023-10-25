@@ -49,7 +49,7 @@
             case "login":            
                 $data = validateLogin();
                 if ($data['valid']) {                
-                    loginUser($data['name']);
+                    loginUser($data['name'], $data['email']);
                     $page = "home";
                 }
                 break;        
@@ -83,7 +83,7 @@
             case "cart":
                 $cart = getShoppingCart();
                 $data = getCartLines($cart);
-                $data += handleActions($data);
+                $data = handleActions($data);
         }
         
         //Aan $data wordt een array 'menu' toegevoegd met de standaard weer te geven items
@@ -105,17 +105,21 @@
     function handleActions($data) {
 
         //handleActions zorgt voor de afhandeling van bijvoorbeeld het toevoegen van een product aan de cart
-        $action = getVar('action');
+        $action = getVar('userAction');
         switch ($action) {
             case "addToCart":
                 $data += validateAddingProductToShoppingCart();
-                    if ($data['valid']){
-                        addProductToShoppingCart($data['product_id'], $data['quantity']);
-                    }
+                if ($data['valid']){
+                    addProductToShoppingCart($data['product_id'], $data['quantity']);
+                }
                 return $data;
             case "completeOrder":
-                  writeOrder($data);
-                  //emptyShoppingCart();
+                $data += writeOrder($data);
+                if ($data['valid'] == True) {
+                    emptyShoppingCart();
+                    unset($data['cartLines']);
+                }
+                return $data;
             default:
                 //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
                 //ook wordt rekening gehouden met of de $data array al bestaat of niet
@@ -228,6 +232,9 @@
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 case "details":
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                case "cart":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 default:

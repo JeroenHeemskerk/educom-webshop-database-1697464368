@@ -8,8 +8,10 @@
         return isset($_SESSION['user']);
     }
     
-    function loginUser($name) {        
+    function loginUser($name, $email) {        
         $_SESSION['user'] = $name;
+        //Email wordt ook geset zodat dit gebruik kan worden om een order weg te schrijven in de database
+        $_SESSION['email'] = $email;
     }
     
     function logoutUser() {        
