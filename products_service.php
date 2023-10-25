@@ -35,11 +35,14 @@
         $total = 0;
         try {
             $products = getAllProducts(); // getSpecificProducts(array_keys($cart))
-            foreach ($cart as $product_id => $amount) {
-                $product = $products[$product_id];
+            foreach ($cart as $productId => $amount) {
+                if (!array_key_exists($productId, $products)){
+                    continue;
+                }
+                $product = $products[$productId];
                 $subTotal = $product['price'] * $amount;
                 $total += $subTotal;
-                $cartLines[$product_id] = array('name' => $product['name'], 'description' => $product['description'], 'price' => $product['price'], 'product_picture_location' => $product['product_picture_location'], 'amount' => $amount, 'subTotal' => $subTotal);
+                $cartLines[$productId] = array('name' => $product['name'], 'description' => $product['description'], 'price' => $product['price'], 'product_picture_location' => $product['product_picture_location'], 'amount' => $amount, 'subTotal' => $subTotal);
             }
         }
         catch(Exception $e) {
