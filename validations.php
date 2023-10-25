@@ -233,24 +233,24 @@
 
     function validateAddingProductToShoppingCart() {
 
-        $product_id = $quantity = $errProductId = $errQuantity = $genericError =  "";
+        $productId = $quantity = $errProductId = $errQuantity = $genericError =  "";
         $valid = False;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             //Eerst worden ongewenste karakters verwijderd
-            $product_id = testInput(getPostVar("product_id"));
+            $productId = testInput(getPostVar("product_id"));
             $quantity = testInput(getPostVar("quantity"));
 
             //Vervolgens wordt gekeken of correcte input gegeven is
-            $errProductId = checkProductId($product_id);
+            $errProductId = checkProductId($productId);
             $errQuantity = checkQuantity($quantity);
             
             //Indien sprake is van correcte input wordt het product aan de cart toegevoegd
             if ($errProductId == "" && $errQuantity == "") {
 
                 try {
-                    if (doesProductExist($product_id)) {
+                    if (doesProductExist($productId)) {
                         $valid = True;
                     }
                 } catch(Exception $e) {
@@ -260,6 +260,6 @@
             }
         }
 
-        return array('product_id' => $product_id, 'quantity' => $quantity, 'errProductId' => $errProductId, 'errQuantity' => $errQuantity, 'genericError' => $genericError, 'valid' => $valid);
+        return array('product_id' => $productId, 'quantity' => $quantity, 'errProductId' => $errProductId, 'errQuantity' => $errQuantity, 'genericError' => $genericError, 'valid' => $valid);
     }
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-function dataCell($value = "", $product_id = "", $colspan = 1) {
-    if ($product_id != ""){
-        echo '<td colspan="' . $colspan . '"><a class="productLink" href="index.php?page=details&product_id=' . $product_id . '"><div class="pagetext">' . $value . '</div></a></td>';
+function dataCell($value = "", $productId = "", $colspan = 1) {
+    if ($productId != ""){
+        echo '<td colspan="' . $colspan . '"><a class="productLink" href="index.php?page=details&product_id=' . $productId . '"><div class="pagetext">' . $value . '</div></a></td>';
     } else {
         echo '<td colspan="' . $colspan . '">' . $value . '</td>';
     }    

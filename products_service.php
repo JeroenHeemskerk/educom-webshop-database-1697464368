@@ -86,7 +86,7 @@
         return array('genericError' => $genericError, 'valid' => $valid);
     }
 
-    function doesProductExist($product_id) {
-        return !empty(getWebshopProduct($product_id));
+    function doesProductExist($productId) {
+        return !empty(getWebshopProduct($productId));
     }
 ?>

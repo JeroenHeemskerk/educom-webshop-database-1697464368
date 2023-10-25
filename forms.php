@@ -17,11 +17,11 @@
         echo '</form>';
     }
 
-    function showAddToCartAction($product_id, $page, $buttonText) {
+    function showAddToCartAction($productId, $page, $buttonText) {
         if (isUserLoggedIn()) {
             showFormStart();
             echo '<input type="hidden" name="page" value="' . $page . '">' .
-            '<input type="hidden" name="product_id" value="' . $product_id . '">' .
+            '<input type="hidden" name="product_id" value="' . $productId . '">' .
             '<input type="hidden" name="userAction" value="addToCart">';
             showFormField('quantity', 'Aantal', 'text');
             echo '" placeholder="0">';
