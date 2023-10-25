@@ -29,14 +29,14 @@
         unset($_SESSION['cart']);
     }
 
-    function addProductToShoppingCart($product_id, $quantity) {
+    function addProductToShoppingCart($productId, $quantity) {
 
         //Product wordt eerst geset indien deze nog niet aangemaakt was in de array
-        if (!isset($_SESSION['cart'][$product_id])){
-            $_SESSION['cart'][$product_id] = 0;
+        if (!isset($_SESSION['cart'][$productId])){
+            $_SESSION['cart'][$productId] = 0;
         } 
             
-        $_SESSION['cart'][$product_id] += $quantity;
+        $_SESSION['cart'][$productId] += $quantity;
     }
 
     function getShoppingCart() {

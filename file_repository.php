@@ -114,14 +114,14 @@
         }
     }
 
-    function getWebshopProduct($product_id){
+    function getWebshopProduct($productId){
 
         $conn = connectToDatabase();
 
-        $product_id = mysqli_real_escape_string($conn, $product_id);
+        $productId = mysqli_real_escape_string($conn, $productId);
 
         try{
-            $sql = "SELECT * FROM products WHERE product_id='" . $product_id . "'";
+            $sql = "SELECT * FROM products WHERE product_id='" . $productId . "'";
             $result = mysqli_query($conn, $sql);
 
             if ($result == False) {

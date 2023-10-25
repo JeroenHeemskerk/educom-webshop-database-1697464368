@@ -27,14 +27,14 @@
         headerCell('Subtotaal:');
         rowEnd();
         
-        foreach ($data['cartLines'] as $product_id => $value){
+        foreach ($data['cartLines'] as $productId => $value){
             rowStart();
-            dataCell('<img class="tablePicture" src="Images/' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="' . $data['cartLines'][$product_id]['product_picture_location'] . '">', $product_id);
-            dataCell($data['cartLines'][$product_id]['name'], $product_id);
-            dataCell($data['cartLines'][$product_id]['description'], $product_id);
-            dataCell('€' . $data['cartLines'][$product_id]['price']);
-            dataCell($data['cartLines'][$product_id]['amount']);
-            dataCell('€'. $data['cartLines'][$product_id]['subTotal']);
+            dataCell('<img class="tablePicture" src="Images/' . $data['cartLines'][$productId]['product_picture_location'] . '" alt="' . $data['cartLines'][$productId]['product_picture_location'] . '">', $productId);
+            dataCell($data['cartLines'][$productId]['name'], $productId);
+            dataCell($data['cartLines'][$productId]['description'], $productId);
+            dataCell('€' . $data['cartLines'][$productId]['price']);
+            dataCell($data['cartLines'][$productId]['amount']);
+            dataCell('€'. $data['cartLines'][$productId]['subTotal']);
             rowEnd();
         }
     

@@ -5,7 +5,7 @@
     }
     
     function showProductBody($data) {
-        
+                
         echo '<h2>' . $data['product']["name"] . '</h2>';
 
         echo '<img src="Images/' . $data['product']["product_picture_location"] . '" class="detailPicture" alt="' . $data['product']["product_picture_location"] . '"><br>' .
