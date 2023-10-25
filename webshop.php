@@ -11,11 +11,7 @@
     }
 
     function showWebshopProducts($data) {
-        print_r($data);
-        echo '<br><br>';
-        print_r($_POST);
-        echo '<br><br>';
-        print_r($_SESSION);
+
         $amountOfProducts = count($data['products']);
 
         echo '<span>' . $data['errProduct_id'] . '</span>';

@@ -5,20 +5,6 @@
     }
 
     function showCartBody($data) {
-        echo '<br>';
-        print_r($data);
-        echo '<br><br>';
-        print_r($_SESSION);
-        echo '<br><br>';
-        print_r($_POST);
-        //echo '<br><br>';
-        //$cartLines = $data['cartLines'];
-        //print_r($cartLines);
-        //echo '<br><br>';
-        //print_r($cartLines[2]);
-        //echo '<br><br>';
-        //print_r($cartLines[2]['amount']);
-
 
         if (!empty($data['cartLines'])){
             showTable($data);

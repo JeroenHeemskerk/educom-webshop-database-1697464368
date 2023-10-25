@@ -115,7 +115,7 @@
                 return $data;
             case "completeOrder":
                 $data += writeOrder($data);
-                if ($data['valid'] == True) {
+                if ($data['valid']) {
                     emptyShoppingCart();
                     unset($data['cartLines']);
                 }

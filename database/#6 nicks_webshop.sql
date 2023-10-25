@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 okt 2023 om 23:13
+-- Gegenereerd op: 25 okt 2023 om 14:14
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -32,6 +32,20 @@ CREATE TABLE `orders` (
   `user_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`) VALUES
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(33, 1),
+(34, 1),
+(35, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +58,22 @@ CREATE TABLE `order_row` (
   `product_id` int(10) NOT NULL,
   `amount` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order_row`
+--
+
+INSERT INTO `order_row` (`row_id`, `order_id`, `product_id`, `amount`) VALUES
+(3, 3, 2, 15),
+(4, 3, 1, 14),
+(5, 3, 1, 15),
+(6, 3, 1, 20),
+(7, 3, 1, 100),
+(11, 33, 4, 30),
+(12, 34, 1, 50),
+(13, 34, 3, 50),
+(14, 34, 4, 50),
+(15, 35, 1, 75);
 
 -- --------------------------------------------------------
 
@@ -140,13 +170,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT voor een tabel `order_row`
 --
 ALTER TABLE `order_row`
-  MODIFY `row_id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `row_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT voor een tabel `products`

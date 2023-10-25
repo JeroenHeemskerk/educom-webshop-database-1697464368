@@ -152,7 +152,7 @@
                 }
             
             //Order_id wordt opgehaald uit de database zodat deze opgenomen kan worden in de de row_id
-            $sql = "SELECT order_id FROM orders WHERE user_id='" . $userId . "'";
+            $sql = "SELECT MAX(order_id) AS order_id FROM orders WHERE user_id='" . $userId . "'";
             $result = mysqli_query($conn, $sql);
 
                 if ($result == False) {

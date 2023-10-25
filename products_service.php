@@ -62,7 +62,7 @@
             logError($e->getMessage()); //Schrijf $e naar log functie (deze doet niks op dit moment want is conform opdracht niet geïmplementeerd)
         }
 
-        if ($genericError == "") {
+        if (empty($genericError)) {
             $valid = True;
         }
         return array('genericError' => $genericError, 'valid' => $valid);
