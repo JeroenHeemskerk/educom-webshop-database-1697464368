@@ -147,21 +147,14 @@
             $sql = "INSERT INTO orders (user_id)
             VALUES ('" . $userId . "')";
             
-                if (!mysqli_query($conn, $sql)) {
-                    throw new Exception('Een nieuwe order kon niet toegevoegd worden aan de database');
-                }
-            
-            //Order_id wordt opgehaald uit de database zodat deze opgenomen kan worden in de de row_id
-            $sql = "SELECT MAX(order_id) AS order_id FROM orders WHERE user_id='" . $userId . "'";
-            $result = mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
 
-                if ($result == False) {
-                    throw new Exception('Order kon niet worden gevonden in de database');
-                }                
-            $value = mysqli_fetch_assoc($result);
-            $orderId = $value["order_id"];
+                //Order_id wordt vervolgens opgehaald
+                $orderId = mysqli_insert_id($conn);
+            } else {
+                throw new Exception('Een nieuwe order kon niet toegevoegd worden aan de database');
+            }
             
-            //Een order_row wordt vervolgens aangemaakt in de database
             foreach ($cartLines as $key => $value){
                 $sql = "INSERT INTO order_row (order_id, product_id, amount)
                 VALUES ('" . $orderId . "', '" . $key . "', '" . $cartLines[$key]['amount'] . "')";
