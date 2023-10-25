@@ -86,6 +86,7 @@
                 $data = handleActions($data);
                 break;
             case "orders":
+                $data = getOrders();
                 break;
         }
         
@@ -128,9 +129,9 @@
                 //errProduct_id en errQuantity worden niet geset bij de standaard weergave waardoor deze hier alsnog aangemaakt worden
                 //ook wordt rekening gehouden met of de $data array al bestaat of niet
                 if (isset($data)){
-                    $data += array('errProduct_id' => "", 'errQuantity' => "");
+                    $data += array('errProductId' => "", 'errQuantity' => "");
                 } else {
-                    $data = array('errProduct_id' => "", 'errQuantity' => "");
+                    $data = array('errProductId' => "", 'errQuantity' => "");
                 }
                 return $data;
         }
@@ -242,6 +243,9 @@
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 case "cart":
+                    echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
+                    break;
+                case "orders":
                     echo '<br><h2 class="error">' . $data['genericError'] . '</h2>';
                     break;
                 default:
