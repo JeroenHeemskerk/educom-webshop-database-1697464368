@@ -29,7 +29,7 @@
         
         foreach ($data['cartLines'] as $product_id => $value){
             rowStart();
-            dataCell('<img class="tablePicture" src="/educom-webshop-database-1697464368/Images/' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="Een foto">', $product_id);
+            dataCell('<img class="tablePicture" src="/educom-webshop-database-1697464368/Images/' . $data['cartLines'][$product_id]['product_picture_location'] . '" alt="' . $data['cartLines'][$product_id]['product_picture_location'] . '">', $product_id);
             dataCell($data['cartLines'][$product_id]['name'], $product_id);
             dataCell($data['cartLines'][$product_id]['description'], $product_id);
             dataCell('€' . $data['cartLines'][$product_id]['price']);
