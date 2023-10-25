@@ -13,7 +13,7 @@
         'Beschrijving: ' . $data['product']["description"] . '<br>' .
         'Prijs: €' . $data['product']["price"] . '<br>';
 
-        echo '<span>' . $data['errProduct_id'] . '</span><br>' .
+        echo '<span>' . $data['errProductId'] . '</span><br>' .
         '<span>' . $data['errQuantity'] . '</span><br>';
 
         showAddToCartAction($data['product']['product_id'], 'details', 'Voeg toe aan winkelwagen');

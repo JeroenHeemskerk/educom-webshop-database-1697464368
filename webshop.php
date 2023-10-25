@@ -12,9 +12,10 @@
 
     function showWebshopProducts($data) {
 
+        print_r($data);
         $amountOfProducts = count($data['products']);
 
-        echo '<span>' . $data['errProduct_id'] . '</span>';
+        echo '<span>' . $data['errProductId'] . '</span>';
         echo '<span>' . $data['errQuantity'] . '</span>';
 
         //Geeft per product het product_id, name, description, price en product_picture_location weer 
