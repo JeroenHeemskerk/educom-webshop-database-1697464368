@@ -14,7 +14,6 @@
     }
 
     function showOrderAndRows($data) {
-        print_r($data);
 
         echo '<h2>Bestelling: #' . $data['orderId'] . '</h2>';
 
@@ -31,7 +30,7 @@
         rowEnd();
 
         $i = 1;
-        foreach($data['orders'] as $value){
+        foreach($data['rows'] as $value){
             rowStart();
             dataCell($i);
             dataCell('<img class="tablePicture" src="Images/' . $value['product_picture_location'] . '" alt="' . $value['product_picture_location'] . '">');
@@ -45,13 +44,15 @@
             $i++;
         }
 
+        rowStart();
+        dataCell("", "", "", 6);
+        dataCell('€' . $data['orders'][$data['orderId']]['total']);
         tableEnd();
     }
 
     function showOrdersAndTotals($data) {
 
         echo '<h2>Uw bestellingen:</h2>';
-        print_r($data);
 
         tableStart();
 

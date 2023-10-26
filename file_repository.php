@@ -161,14 +161,14 @@
 
             $result = mysqli_query($conn, $sql);
 
-            $orders = array();
+            $rows = array();
 
             while ($row = mysqli_fetch_assoc($result)) {
                 
-                $orders[$row['row_id']] = $row;
+                $rows[$row['row_id']] = $row;
             }
 
-            return $orders;
+            return $rows;
 
         } finally {
             disconnectFromDatabase($conn); 

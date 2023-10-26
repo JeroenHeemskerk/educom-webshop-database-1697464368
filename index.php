@@ -88,6 +88,7 @@
             case "orders":
                 if (is_numeric(getVar('orderId'))) {
                     $data = getRowsByOrderId(getVar('orderId'));
+                    $data += getOrdersAndSum();
                 } else {
                     $data = getOrdersAndSum();
                 }
