@@ -143,7 +143,7 @@
 
         try {
 
-            $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
+            $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price) AS total
             FROM order_row
             INNER JOIN products
                 ON order_row.product_id=products.product_id

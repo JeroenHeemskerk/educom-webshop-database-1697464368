@@ -1,11 +1,25 @@
 <?php
 
     function getOrdersHeader() {
-        return "Orders";
+        return "Bestellingen";
     }
 
     function showOrdersBody($data) {
-        echo '<h2>Hier zullen uw orders in te zien zijn</h2>';
-        print_r($data);
+        echo '<h2>Uw bestellingen:</h2>';
+
+        tableStart();
+        rowStart();
+        headerCell('Bestelling ID');
+        headerCell('Totaal');
+        rowEnd();
+        
+        foreach($data['orders'] as $value){
+            rowStart();
+            dataCell($value['order_id']);
+            dataCell('€' . $value['total']);
+            rowEnd();
+        }
+        
+        tableEnd();
     }
 ?>
