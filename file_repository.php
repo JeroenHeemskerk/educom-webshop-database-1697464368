@@ -135,6 +135,46 @@
         }
     }
 
+    function getRowsByOrderIdFromDatabase($orderId) {
+
+        $userId = getUserIdByEmail();
+
+        $conn = connectToDatabase();
+
+        try {
+
+            $sql = "SELECT order_row.order_id, order_row.row_id, order_row.product_id,
+            order_row.amount, products.name, products.price, products.product_picture_location, price * amount AS total
+            FROM order_row
+            INNER JOIN products
+                ON order_row.product_id=products.product_id
+            INNER JOIN orders 
+                ON order_row.order_id=orders.order_id
+            WHERE (orders.user_id='" . $userId . "' AND order_row.order_id='" . $orderId . "')
+            ORDER BY row_id";
+
+            $result = mysqli_query($conn, $sql);
+
+            if ($result == False) {
+                throw new Exception('Orders en orderrijen konden niet uitgelezen worden uit de database');
+            }
+
+            $result = mysqli_query($conn, $sql);
+
+            $orders = array();
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                
+                $orders[$row['row_id']] = $row;
+            }
+
+            return $orders;
+
+        } finally {
+            disconnectFromDatabase($conn); 
+        }
+    }
+
     function getOrdersAndSumFromDatabase() {
 
         $userId = getUserIdByEmail();
@@ -155,7 +195,7 @@
             $result = mysqli_query($conn, $sql);
 
             if ($result == False) {
-                throw new Exception('Orderrijen en totalen konden niet uitgelezen worden uit de database');
+                throw new Exception('Orders en totalen konden niet uitgelezen worden uit de database');
             }
 
             $result = mysqli_query($conn, $sql);

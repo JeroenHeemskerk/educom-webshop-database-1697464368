@@ -76,7 +76,7 @@
                 $data += handleActions($data);           
                 break;
             case "details":
-                $data = getWebshopProductDetails(getVar('product_id'));
+                $data = getWebshopProductDetails(getVar('productId'));
                 createShoppingCart();
                 $data += handleActions($data);
                 break;
@@ -86,7 +86,11 @@
                 $data = handleActions($data);
                 break;
             case "orders":
-                $data = getOrdersAndSum();
+                if (is_numeric(getVar('orderId'))) {
+                    $data = getRowsByOrderId(getVar('orderId'));
+                } else {
+                    $data = getOrdersAndSum();
+                }
                 break;
         }
         
@@ -95,7 +99,7 @@
         $data['menu'] = array('home' => 'Home', 'about' => 'About', 'contact' => 'Contact', 'webshop' => 'Webshop');
         if (isUserLoggedIn()) {
             $data['menu']['cart'] = "Winkelwagen";
-            $data['menu']['orders'] = "Orders";
+            $data['menu']['orders'] = "Bestellingen";
             $data['menu']['logout'] = "Logout " . getLoggedInUserName();
         } else {
             $data['menu']['register'] = "Register";

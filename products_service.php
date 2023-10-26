@@ -54,6 +54,22 @@
         
     }
 
+    function getRowsByOrderId($orderId) {
+        $genericError = "";
+
+        $orderId = testInput($orderId);
+
+        try {
+            $orders = getRowsByOrderIdFromDatabase($orderId);
+        }
+        catch(Exception $e) {
+            $genericError = "Helaas zijn uw orders op dit moment niet beschikbaar. Probeer het later opnieuw.";
+            logError($e->getMessage()); //Schrijf $e naar log functie
+        }
+
+        return array('orders' => $orders, 'orderId' => $orderId, 'genericError' => $genericError);
+    }
+
     function getOrdersAndSum() {
 
         $genericError = "";

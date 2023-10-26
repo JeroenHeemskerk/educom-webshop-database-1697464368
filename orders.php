@@ -5,9 +5,56 @@
     }
 
     function showOrdersBody($data) {
-        echo '<h2>Uw bestellingen:</h2>';
+        
+        if (!isset($data['orderId'])){
+            showOrdersAndTotals($data);
+        } else {
+            showOrderAndRows($data);
+        }
+    }
+
+    function showOrderAndRows($data) {
+        print_r($data);
+
+        echo '<h2>Bestelling: #' . $data['orderId'] . '</h2>';
 
         tableStart();
+
+        rowStart();
+        headerCell('');
+        headerCell('Plaatje');
+        headerCell('Product id');
+        headerCell('Naam');
+        headerCell('Hoeveelheid');
+        headerCell('Prijs');
+        headerCell('Totaal');
+        rowEnd();
+
+        $i = 1;
+        foreach($data['orders'] as $value){
+            rowStart();
+            dataCell($i);
+            dataCell('<img class="tablePicture" src="Images/' . $value['product_picture_location'] . '" alt="' . $value['product_picture_location'] . '">');
+            dataCell($value['product_id']);
+            dataCell($value['name']);
+            dataCell($value['amount']);
+            dataCell('€' . $value['price']);
+            dataCell('€' . $value['total']);
+            rowEnd();
+
+            $i++;
+        }
+
+        tableEnd();
+    }
+
+    function showOrdersAndTotals($data) {
+
+        echo '<h2>Uw bestellingen:</h2>';
+        print_r($data);
+
+        tableStart();
+
         rowStart();
         headerCell('Bestelling ID');
         headerCell('Totaal');
@@ -15,11 +62,11 @@
         
         foreach($data['orders'] as $value){
             rowStart();
-            dataCell($value['order_id']);
-            dataCell('€' . $value['total']);
+            dataCell($value['order_id'], "orders", $value['order_id']);
+            dataCell('€' . $value['total'], "orders", $value['order_id']);
             rowEnd();
         }
-        
+
         tableEnd();
     }
 ?>

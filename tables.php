@@ -1,11 +1,19 @@
 <?php
 
-function dataCell($value = "", $productId = "", $colspan = 1) {
-    if ($productId != ""){
-        echo '<td colspan="' . $colspan . '"><a class="productLink" href="index.php?page=details&product_id=' . $productId . '"><div class="pagetext">' . $value . '</div></a></td>';
-    } else {
-        echo '<td colspan="' . $colspan . '">' . $value . '</td>';
-    }    
+function dataCell($value = "", $page = "", $id = "", $colspan = 1) {
+
+    switch ($page) {
+        case "cart":
+            echo '<td colspan="' . $colspan . '"><a class="productLink" href="index.php?page=details&productId=' . $id . '"><div class="pagetext">' . $value . '</div></a></td>';
+            break;
+        case "orders":
+            echo '<td colspan="' . $colspan . '"><a class="productLink" href="index.php?page=orders&orderId=' . $id . '"><div class="pagetext">' . $value . '</div></a></td>';
+            break;
+        default:
+            echo '<td colspan="' . $colspan . '">' . $value . '</td>';
+            break;
+
+    } 
 }
 
 function headerCell($value) {

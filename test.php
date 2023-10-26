@@ -35,19 +35,21 @@
 
         $conn = connectToDatabase();
 
-        /*
+        $orderId = 2;
+
+        
         $sql = "SELECT order_row.order_id, order_row.row_id, order_row.product_id,
-            order_row.amount, products.price, price * amount
+            order_row.amount, products.price, price * amount AS total
             FROM order_row
             INNER JOIN products
                 ON order_row.product_id=products.product_id
             INNER JOIN orders 
                 ON order_row.order_id=orders.order_id
-            WHERE orders.user_id='" . $userId . "'
+            WHERE (orders.user_id='" . $userId . "' AND order_row.order_id='" . $orderId . "')
             ORDER BY row_id"; //Hier kan denk ik nog WHERE order_id op klik op pagina
-        */
-
         
+
+        /*
         $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
         FROM order_row
         INNER JOIN products
@@ -56,7 +58,7 @@
             ON order_row.order_id=orders.order_id
         WHERE orders.user_id='" . $userId . "'
         GROUP BY order_row.order_id";
-        
+        */
 
         $result = mysqli_query($conn, $sql);
 
@@ -64,7 +66,7 @@
 
         while ($row = mysqli_fetch_assoc($result)) {
                 
-            $orders[$row['order_id']] = $row; //is row_id voor de andere
+            $orders[$row['row_id']] = $row; //is row_id voor de andere
         }
 
             print_r($orders);

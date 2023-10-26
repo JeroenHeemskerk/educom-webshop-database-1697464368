@@ -29,9 +29,9 @@
         
         foreach ($data['cartLines'] as $productId => $value){
             rowStart();
-            dataCell('<img class="tablePicture" src="Images/' . $data['cartLines'][$productId]['product_picture_location'] . '" alt="' . $data['cartLines'][$productId]['product_picture_location'] . '">', $productId);
-            dataCell($data['cartLines'][$productId]['name'], $productId);
-            dataCell($data['cartLines'][$productId]['description'], $productId);
+            dataCell('<img class="tablePicture" src="Images/' . $data['cartLines'][$productId]['product_picture_location'] . '" alt="' . $data['cartLines'][$productId]['product_picture_location'] . '">', "cart", $productId);
+            dataCell($data['cartLines'][$productId]['name'], "cart", $productId);
+            dataCell($data['cartLines'][$productId]['description'], "cart", $productId);
             dataCell('€' . $data['cartLines'][$productId]['price']);
             dataCell($data['cartLines'][$productId]['amount']);
             dataCell('€'. $data['cartLines'][$productId]['subTotal']);
