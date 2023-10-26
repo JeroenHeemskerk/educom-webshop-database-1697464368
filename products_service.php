@@ -54,12 +54,12 @@
         
     }
 
-    function getOrders() {
+    function getOrdersAndSum() {
 
         $genericError = "";
 
         try {
-            $orders = getOrdersFromDatabase();
+            $orders = getOrdersAndSumFromDatabase();
         }
         catch(Exception $e) {
             $genericError = "Helaas zijn uw orders op dit moment niet beschikbaar. Probeer het later opnieuw.";

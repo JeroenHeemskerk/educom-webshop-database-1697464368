@@ -20,6 +20,10 @@
         
     }
 
+    function disconnectFromDatabase($conn) {        
+        mysqli_close($conn);
+    }
+
     function getUserIdByEmail() {
 
         return 1;
@@ -31,6 +35,7 @@
 
         $conn = connectToDatabase();
 
+        /*
         $sql = "SELECT order_row.order_id, order_row.row_id, order_row.product_id,
             order_row.amount, products.price, price * amount
             FROM order_row
@@ -40,8 +45,9 @@
                 ON order_row.order_id=orders.order_id
             WHERE orders.user_id='" . $userId . "'
             ORDER BY row_id"; //Hier kan denk ik nog WHERE order_id op klik op pagina
+        */
 
-        /*
+        
         $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
         FROM order_row
         INNER JOIN products
@@ -50,19 +56,20 @@
             ON order_row.order_id=orders.order_id
         WHERE orders.user_id='" . $userId . "'
         GROUP BY order_row.order_id";
-        */
+        
 
         $result = mysqli_query($conn, $sql);
 
         $orders = array();
-        $i = 0;
+
         while ($row = mysqli_fetch_assoc($result)) {
                 
-            $orders[$row['row_id']] = $row;
-            $i++;
+            $orders[$row['order_id']] = $row; //is row_id voor de andere
         }
 
             print_r($orders);
+        
+        disconnectFromDatabase($conn);
         }
 
 

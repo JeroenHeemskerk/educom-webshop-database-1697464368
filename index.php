@@ -86,7 +86,7 @@
                 $data = handleActions($data);
                 break;
             case "orders":
-                $data = getOrders();
+                $data = getOrdersAndSum();
                 break;
         }
         

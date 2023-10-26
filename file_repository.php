@@ -135,25 +135,13 @@
         }
     }
 
-    function getOrdersFromDatabase() {
+    function getOrdersAndSumFromDatabase() {
 
         $userId = getUserIdByEmail();
 
         $conn = connectToDatabase();
 
         try {
-
-            //Uit orders worden alle order_ids gehaald van een specifieke user_id
-            /*
-            $sql = "SELECT order_id.order, row_id.order_row, product_id.order_row, amount.order_row FROM
-            orders LEFT WHERE user_id='" . $userId . "'";
-            $result = mysqli_query($conn, $sql);
-
-            if ($result == False) {
-                throw new Exception('Opgegeven order kon niet worden gevonden in de database');
-            }
-            */
-
 
             $sql = "SELECT order_row.order_id, SUM(order_row.amount * products.price)
             FROM order_row
@@ -170,36 +158,17 @@
                 throw new Exception('Orderrijen en totalen konden niet uitgelezen worden uit de database');
             }
 
-            $orders = array();
+            $result = mysqli_query($conn, $sql);
 
+            $orders = array();
+            $i = 0;
             while ($row = mysqli_fetch_assoc($result)) {
                 
-                $orders[$row["order_id"]] = $row;
+                $orders[$row['order_id']] = $row;
+                $i++;
             }
 
             return $orders;
-            
-            /*
-            //Deze orders worden in een array $orders gestopt
-            while ($row = mysqli_fetch_assoc($result)) {
-                
-                $orders[$row["order_id"]] = $row;
-            }
-
-            foreach ($orders as $row){
-
-                $sql = "SELECT * FROM order_row WHERE order_id='" . $row['order_id'] . "'";
-                $result = mysqli_query($conn, $sql);
-
-                if ($result == False) {
-                    throw new Exception('Er kon geen row_id gevonden worden in de database op basis van de opgegeven order_id');
-                }
-
-                $order[]
-            
-
-            }
-            */
 
         } finally {
             disconnectFromDatabase($conn); 
