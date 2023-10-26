@@ -39,7 +39,7 @@
         }
     
         rowStart(); 
-        dataCell('', '', 4);
+        dataCell('', '', '', 4);
         dataCell('Totaal:');  
         dataCell('€' . $data['total']);
         rowEnd();
