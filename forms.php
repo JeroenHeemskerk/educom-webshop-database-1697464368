@@ -1,11 +1,17 @@
 <?php
 
-    function showFormField($fieldName, $label, $inputType) {        
+    function showFormField($fieldName, $label, $inputType, $commPref) {        
 		
-		if ($inputType == "text"){
-			echo '<label for="' . $fieldName . '">' . $label . '</label>
-			<input type="' . $inputType . '" id="' . $fieldName .  '" name="' . $fieldName . '" ';
-		}
+        switch ($inputType){
+            case ("text"):
+                echo '<label for="' . $fieldName . '">' . $label . '</label>
+                <input type="text" id="' . $fieldName .  '" name="' . $fieldName . '" ';
+                break;
+            case ("radio"):
+                echo '<input type="radio" id="' . $fieldName . '" name="' . $fieldName . '" value="' . $commPref . '">
+                <label for="' . $fieldName . '">' . $label . '</label><br>';
+                break;
+            }
     }
 
     function showFormStart() {

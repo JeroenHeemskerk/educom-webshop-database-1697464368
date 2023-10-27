@@ -32,21 +32,22 @@
         
     
         //Formulier met naam, emailadres en telefoonnummer
-        showFormField("name", "Naam:", "text");
+        showFormField("name", "Naam:", "text", "");
         echo 'value="' . $data['name'] . '"><span>' . $data['errName'] . '</span><br>';
-        showFormField("email", "Emailadres:", "text");
+        showFormField("email", "Emailadres:", "text", "");
         echo 'value="' . $data['email'] . '"><span>' . $data['errMail'] . '</span><br>';
-        showFormField("phonenumber", "Telefoonnummer:", "text");
+        showFormField("phonenumber", "Telefoonnummer:", "text", "");
         echo 'value="' . $data['phonenumber'] . '"><span>' . $data['errPhonenumber'] . '</span><br><br>';
     
         //Radio button met contactwijze
-        echo '<label for="contactmode1">Contactwijze:</label><span> ' . $data['errContactmode'] . '</span><br>
-            <input type="radio" id="contactmode" name="contactmode" value="email">
-            <label for="contactmode">Email</label><br>
-            <input type="radio" id="contactmode" name="contactmode" value="phone">
-            <label for="contactmode">Telefoon</label><br><br>';
-    
-        //Mogelijkheid tot verzenden bericht
+        echo '<label for="contactmode">Contactwijze:</label><span> ' . $data['errContactmode'] . '</span><br>';
+
+        foreach (COMM_PREFS as $value => $label){
+            showFormField("contactmode", $label, "radio", $value);
+        }
+
+        echo '<br>';
+
         echo '<label for="message">Uw bericht:</label><br>
             <textarea id="message" name="message" rows="3" cols="50"></textarea><br><br>';
     
