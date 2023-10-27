@@ -1,17 +1,41 @@
 <?php
 
-    function showFormField($fieldName, $label, $inputType, $commPref) {        
+    function showFormField($fieldName, $label, $inputType, $data, $options = "") {        
 		
         switch ($inputType){
+            case("select"):
+                if ($data['salutation'] == $options){
+                    echo '<option value="' . $options . '" selected>' . $label . '</option>';
+                } else {
+                    echo '<option value="' . $options. '">' . $label . '</option>';
+                }
+                break;
             case ("text"):
-                echo '<label for="' . $fieldName . '">' . $label . '</label>
-                <input type="text" id="' . $fieldName .  '" name="' . $fieldName . '" ';
+                echo '<label for="' . $fieldName . '">' . $label . '</label> ';
+                echo '<input type="text" id="' . $fieldName .  '" name="' . $fieldName . '"';
+                echo 'value="' . $data . '">';
+                showErrorSpan($options);
+                echo '<br>';
                 break;
             case ("radio"):
-                echo '<input type="radio" id="' . $fieldName . '" name="' . $fieldName . '" value="' . $commPref . '">
-                <label for="' . $fieldName . '">' . $label . '</label><br>';
+                if ($data['contactmode'] == $options){
+                    echo '<input type="radio" checked = "checked id="' . $fieldName . '" name="' . $fieldName . '" value="' . $options . '">';
+                    echo '<label for="' . $fieldName . '">' . $label . '</label><br>';
+                } else {
+                    echo '<input type="radio" id="' . $fieldName . '" name="' . $fieldName . '" value="' . $options . '">';
+                    echo '<label for="' . $fieldName . '">' . $label . '</label><br>';
+                }
                 break;
+            case ("textarea"):
+                echo '<label for="' . $fieldName . '">' . $label . '</label>';
+                showErrorSpan($data['errMessage']);
+                echo '<br>';
+                echo '<textarea id="' . $fieldName . '" name="' . $fieldName . '"' . $options . '">'; echo $data['message'] . '</textarea>';
             }
+    }
+
+    function showErrorSpan($error) {
+        echo '<span> ' . $error . '</span>';
     }
 
     function showFormStart() {

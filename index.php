@@ -59,9 +59,6 @@
                 break;        
             case "contact":            
                 $data = validateContact();
-                if ($data['valid']) {                
-                    $page = "thanks";
-                }
                 break;
             case "register":
                 $data = validateRegister();
@@ -198,9 +195,6 @@
             case "login":
                 showLoginBody($data);
                 break;
-            case "thanks":
-                showThanksBody($data);
-                break;
             case "webshop":
                 showWebshopBody($data);
                 break;
@@ -280,16 +274,13 @@
                 return getAboutHeader();
             case "contact":
                 require_once 'contact.php';
-                return getContactHeader();
+                return getContactHeader($data);
             case "register":
                 require_once 'register.php';
                 return getRegisterHeader();
             case "login":
                 require_once 'login.php';
                 return getLoginHeader();
-            case "thanks":
-                require_once 'thanks.php';
-				return getThanksHeader();
             case "webshop":
                 require_once 'webshop.php';
                 return getWebshopHeader();

@@ -84,7 +84,7 @@
     function validateContact() {
     
         $salutation = $name = $email = $phonenumber = $contactmode = $message = "";
-        $errSalutation = $errName = $errMail = $errPhonenumber = $errContactmode = "";
+        $errSalutation = $errName = $errMail = $errPhonenumber = $errContactmode = $errMessage = "";
         $valid = False;        
         
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -123,12 +123,16 @@
             
             if (empty($phonenumber)) {
                 
-				$errPhonenumber = "Telefoonnummer moet ingevuld zijn";
-				
+				$errPhonenumber = "Telefoonnummer moet ingevuld zijn";				
             //Als phonenumber niet leeg is wordt gekeken of phonenumber enkel uit nummers bestaat
             } else if (!is_numeric($phonenumber)) {
                     $errPhonenumber = "Enkel cijfers zijn toegestaan";
-            }             
+            }
+            
+            if (strlen($message) > 100) {
+
+                $errMessage = "Het bericht mag maximaal 100 karakters zijn";
+            }
             
             //Als contactmode leeg is wordt een foutmelding opgenomen
             if (empty($contactmode)) {
@@ -137,7 +141,7 @@
             }
         
             //Als er geen errors voorkomen wordt validInput op true gezet zodat de bedankpagina getoond kan worden
-            if (($errSalutation == "") && ($errName == "") && ($errMail == "") && ($errPhonenumber == "") && ($errContactmode == "")){
+            if (($errSalutation == "") && ($errName == "") && ($errMail == "") && ($errPhonenumber == "") && ($errContactmode == "") && ($errMessage == "")){
             
                 $valid = True;
             } else {
@@ -147,7 +151,7 @@
         
         
         return array('salutation' => $salutation, 'errSalutation' => $errSalutation, 'name' => $name, 'errName' => $errName, 'email' => $email, 'errMail' => $errMail, 'phonenumber' => $phonenumber,
-        'errPhonenumber' => $errPhonenumber, 'contactmode' => $contactmode, 'errContactmode' => $errContactmode, 'message' => $message, 'valid' => $valid, 'page' => "");    
+        'errPhonenumber' => $errPhonenumber, 'contactmode' => $contactmode, 'errContactmode' => $errContactmode, 'message' => $message, 'errMessage' => $errMessage, 'valid' => $valid, 'page' => "");    
     }
     
     function validateLogin() {
