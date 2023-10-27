@@ -24,7 +24,7 @@
                 break;
             case ("radio"):
                 if ($data['contactmode'] == $options){
-                    echo '<input type="radio" checked = "checked id="' . $fieldName . '" name="' . $fieldName . '" value="' . $options . '">';
+                    echo '<input type="radio" checked = "checked" id="' . $fieldName . '" name="' . $fieldName . '" value="' . $options . '">';
                     echo '<label for="' . $fieldName . '">' . $label . '</label><br>';
                 } else {
                     echo '<input type="radio" id="' . $fieldName . '" name="' . $fieldName . '" value="' . $options . '">';
