@@ -32,8 +32,8 @@
 
     function showBuyAction($buttonText) {
         showFormStart();
-        echo '<input type="hidden" name="page" value="cart">'; 
-        echo '<input type="hidden" name="userAction" value="completeOrder">';
-        echo '<input class="buyActionButton" type="submit" value="' . $buttonText . '">';
+            echo '<input type="hidden" name="page" value="cart">'; 
+            echo '<input type="hidden" name="userAction" value="completeOrder">';
+            echo '<input class="buyActionButton" type="submit" value="' . $buttonText . '">';
     }
 ?>

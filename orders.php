@@ -20,33 +20,33 @@
         tableStart();
 
         rowStart();
-        headerCell('');
-        headerCell('Plaatje');
-        headerCell('Product id');
-        headerCell('Naam');
-        headerCell('Hoeveelheid');
-        headerCell('Prijs');
-        headerCell('Totaal');
+            headerCell('');
+            headerCell('Plaatje');
+            headerCell('Product id');
+            headerCell('Naam');
+            headerCell('Hoeveelheid');
+            headerCell('Prijs');
+            headerCell('Totaal');
         rowEnd();
 
         $i = 1;
         foreach($data['rows'] as $value){
             rowStart();
-            dataCell($i);
-            dataCell('<img class="tablePicture" src="Images/' . $value['product_picture_location'] . '" alt="' . $value['product_picture_location'] . '">');
-            dataCell($value['product_id']);
-            dataCell($value['name']);
-            dataCell($value['amount']);
-            dataCell('€' . $value['price']);
-            dataCell('€' . $value['total']);
+                dataCell($i);
+                dataCell('<img class="tablePicture" src="Images/' . $value['product_picture_location'] . '" alt="' . $value['product_picture_location'] . '">');
+                dataCell($value['product_id']);
+                dataCell($value['name']);
+                dataCell($value['amount']);
+                dataCell('€' . $value['price']);
+                dataCell('€' . $value['total']);
             rowEnd();
 
             $i++;
         }
 
         rowStart();
-        dataCell("", "", "", 6);
-        dataCell('€' . $data['orders'][$data['orderId']]['total']);
+            dataCell("", "", "", 6);
+            dataCell('€' . $data['orders'][$data['orderId']]['total']);
         tableEnd();
     }
 
@@ -57,14 +57,14 @@
         tableStart();
 
         rowStart();
-        headerCell('Bestelling ID');
-        headerCell('Totaal');
+            headerCell('Bestelling ID');
+            headerCell('Totaal');
         rowEnd();
         
         foreach($data['orders'] as $value){
             rowStart();
-            dataCell($value['order_id'], "orders", $value['order_id']);
-            dataCell('€' . $value['total'], "orders", $value['order_id']);
+                dataCell($value['order_id'], "orders", $value['order_id']);
+                dataCell('€' . $value['total'], "orders", $value['order_id']);
             rowEnd();
         }
 
