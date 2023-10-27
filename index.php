@@ -117,7 +117,7 @@
             case "addToCart":
                 $data += validateAddingProductToShoppingCart();
                 if ($data['valid']){
-                    addProductToShoppingCart($data['product_id'], $data['quantity']);
+                    addProductToShoppingCart($data['productId'], $data['quantity']);
                 }
                 return $data;
             case "completeOrder":

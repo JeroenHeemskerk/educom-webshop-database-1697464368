@@ -58,10 +58,10 @@
         if (isUserLoggedIn()) {
             showFormStart();
             echo '<input type="hidden" name="page" value="' . $page . '">' .
-            '<input type="hidden" name="product_id" value="' . $productId . '">' .
+            '<input type="hidden" name="productId" value="' . $productId . '">' .
             '<input type="hidden" name="userAction" value="addToCart">';
-            showFormField('quantity', 'Aantal', 'text');
-            echo '" placeholder="0">';
+            showFormField('quantity', 'Aantal', 'text', "", "", "0");
+            echo '<br>';
             echo '<input type="submit" value="' . $buttonText . '">';
             echo '</form>';     
         }

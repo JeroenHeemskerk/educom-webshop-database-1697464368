@@ -243,7 +243,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             //Eerst worden ongewenste karakters verwijderd
-            $productId = testInput(getPostVar("product_id"));
+            $productId = testInput(getPostVar("productId"));
             $quantity = testInput(getPostVar("quantity"));
 
             //Vervolgens wordt gekeken of correcte input gegeven is
@@ -264,6 +264,6 @@
             }
         }
 
-        return array('product_id' => $productId, 'quantity' => $quantity, 'errProductId' => $errProductId, 'errQuantity' => $errQuantity, 'genericError' => $genericError, 'valid' => $valid);
+        return array('productId' => $productId, 'quantity' => $quantity, 'errProductId' => $errProductId, 'errQuantity' => $errQuantity, 'genericError' => $genericError, 'valid' => $valid);
     }
 ?>
