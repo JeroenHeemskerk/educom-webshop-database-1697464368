@@ -1,6 +1,6 @@
 <?php
 
-    function showFormField($fieldName, $label, $inputType, $data, $options = "") {        
+    function showFormField($fieldName, $label, $inputType, $data, $error, $options = "") {        
 		
         switch ($inputType){
             case("select"):
@@ -13,9 +13,14 @@
             case ("text"):
                 echo '<label for="' . $fieldName . '">' . $label . '</label> ';
                 echo '<input type="text" id="' . $fieldName .  '" name="' . $fieldName . '"';
+                echo 'value="' . $data . '" placeholder="' . $options . '">';
+                showErrorSpan($error);
+                break;
+            case ("password"):
+                echo '<label for="' . $fieldName . '">' . $label . '</label> ';
+                echo '<input type="password" id="' . $fieldName .  '" name="' . $fieldName . '"';
                 echo 'value="' . $data . '">';
-                showErrorSpan($options);
-                echo '<br>';
+                showErrorSpan($error);
                 break;
             case ("radio"):
                 if ($data['contactmode'] == $options){
@@ -29,21 +34,23 @@
             case ("textarea"):
                 echo '<label for="' . $fieldName . '">' . $label . '</label>';
                 showErrorSpan($data['errMessage']);
-                echo '<br>';
                 echo '<textarea id="' . $fieldName . '" name="' . $fieldName . '"' . $options . '">'; echo $data['message'] . '</textarea>';
             }
     }
 
     function showErrorSpan($error) {
         echo '<span> ' . $error . '</span>';
+        echo '<br>';
     }
 
     function showFormStart() {
         echo '<br><form method="post" action="index.php">'; 
     }
         
-    function showFormEnd() {
-        echo '<input type="submit" value="Verzenden">';
+    function showFormEnd($page, $value) {
+        //Verborgen variabele om ervoor te zorgen dat de pagina gevonden kan worden middels de getRequestedPage functie van index.php
+        echo '<input type="hidden" name="page" value="' . $page . '">';
+        echo '<input type="submit" value="' . $value . '">';
         echo '</form>';
     }
 

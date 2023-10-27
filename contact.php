@@ -22,7 +22,7 @@
             echo '<select name="salutation" id="salutation">';
 
             foreach (SALUTATIONS as $value => $label) {
-                showFormField("", $label, "select", $data, $value);
+                showFormField("", $label, "select", $data, "", $value);
             }
 
             echo '</select>';
@@ -31,9 +31,9 @@
             
         
             //Formulier met naam, emailadres en telefoonnummer
-            showFormField("name", "Naam:", "text", $data['name'], $data['errName']);
-            showFormField("email", "Emailadres:", "text", $data['email'], $data['errMail']);       
-            showFormField("phonenumber", "Telefoonnummer:", "text", $data['phonenumber'], $data['errPhonenumber']);
+            showFormField("name", "Naam:", "text", $data['name'], $data['errName'], "John Doe");
+            showFormField("email", "Emailadres:", "text", $data['email'], $data['errMail'], "johndoe@hotmail.com");       
+            showFormField("phonenumber", "Telefoonnummer:", "text", $data['phonenumber'], $data['errPhonenumber'], "06-12345678");
             
             echo '<br>';
         
@@ -43,7 +43,7 @@
             echo '<br>';
 
             foreach (COMM_PREFS as $value => $label){
-                showFormField("contactmode", $label, "radio", $data, $value);
+                showFormField("contactmode", $label, "radio", $data, "", $value);
             }
 
             echo '<br>';
@@ -53,11 +53,9 @@
             
             echo '<br><br>';
         
-            //Verborgen variabele om ervoor te zorgen dat de contactpagina gevonden kan worden middels de getRequestedPage functie van index.php
-            echo '<input type="hidden" name="page" value="contact">';
-        
             //Verzendknop
-            showFormEnd();
+            showFormEnd("contact", "Verzenden");
+
         } else if ($data['valid']) {
             //Bedankformulier wordt opgemaakt met de ingevulde gegevens
             echo '<h2>Hartelijk dank voor uw bericht. U zal spoedig een reactie ontvangen.</h2>';
